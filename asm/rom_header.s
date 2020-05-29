@@ -35,7 +35,7 @@
 .elseif (VERSION_JP == 1 || VERSION_SH == 1)
     .ascii "J"                  /* NTSC-J (Japan) */
 .else
-    .ascii "P"                  /* PAL (Europe) */
+    .ascii "I"                  /* PAL (Italy) */
 .endif
 
 .if VERSION_SH == 1

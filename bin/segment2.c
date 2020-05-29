@@ -1413,6 +1413,18 @@ ALIGNED8 static const Texture texture_font_char_eu_eszeet[] = {
 #include "textures/segment2/font_graphics.06530.ia1.inc.c"
 };
 
+ALIGNED8 static const u8 texture_font_char_eu_upperigrave[] = {
+#include "textures/segment2/font_graphics.06540.ia1.inc.c"
+};
+
+ALIGNED8 static const u8 texture_font_char_eu_lowerigrave[] = {
+#include "textures/segment2/font_graphics.06550.ia1.inc.c"
+};
+
+ALIGNED8 static const u8 texture_font_char_eu_upperograve[] = {
+#include "textures/segment2/font_graphics.06560.ia1.inc.c"
+};
+
 // US Small Font
 #else
 ALIGNED8 static const Texture texture_font_char_us_0[] = {
@@ -1804,6 +1816,7 @@ ALIGNED8 static const Texture texture_hud_char_arrow_down[] = {
 #include "textures/segment2/segment2.081D0.rgba16.inc.c"
 };
 
+
 // Main HUD print table 0x02008250-0x02008337
 const Texture *const main_hud_lut[] = {
 #ifdef VERSION_EU
@@ -1860,23 +1873,29 @@ const Texture *const main_hud_lut[] = {
 // Main small font print table 0x02008338-0x02008737
 const Texture *const main_font_lut[] = {
 #ifdef VERSION_EU // EU Font Table
+    //0X
     texture_font_char_eu_0, texture_font_char_eu_1, texture_font_char_eu_2, texture_font_char_eu_3,
     texture_font_char_eu_4, texture_font_char_eu_5, texture_font_char_eu_6, texture_font_char_eu_7,
     texture_font_char_eu_8, texture_font_char_eu_9, texture_font_char_eu_A, texture_font_char_eu_B,
     texture_font_char_eu_C, texture_font_char_eu_D, texture_font_char_eu_E, texture_font_char_eu_F,
+    //1X
     texture_font_char_eu_G, texture_font_char_eu_H, texture_font_char_eu_I, texture_font_char_eu_J,
     texture_font_char_eu_K, texture_font_char_eu_L, texture_font_char_eu_M, texture_font_char_eu_N,
     texture_font_char_eu_O, texture_font_char_eu_P, texture_font_char_eu_Q, texture_font_char_eu_R,
     texture_font_char_eu_S, texture_font_char_eu_T, texture_font_char_eu_U, texture_font_char_eu_V,
+    //2X
     texture_font_char_eu_W, texture_font_char_eu_X, texture_font_char_eu_Y, texture_font_char_eu_Z,
     texture_font_char_eu_a, texture_font_char_eu_b, texture_font_char_eu_c, texture_font_char_eu_d,
     texture_font_char_eu_e, texture_font_char_eu_f, texture_font_char_eu_g, texture_font_char_eu_h,
     texture_font_char_eu_i, texture_font_char_eu_j, texture_font_char_eu_k, texture_font_char_eu_l,
+    //3X
     texture_font_char_eu_m, texture_font_char_eu_n, texture_font_char_eu_o, texture_font_char_eu_p,
     texture_font_char_eu_q, texture_font_char_eu_r, texture_font_char_eu_s, texture_font_char_eu_t,
     texture_font_char_eu_u, texture_font_char_eu_v, texture_font_char_eu_w, texture_font_char_eu_x,
     texture_font_char_eu_y, texture_font_char_eu_z, texture_font_char_eu_apostrophe, texture_font_char_eu_period,
+    //4X
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+    //5X
     texture_font_char_eu_button_C_up,
     texture_font_char_eu_button_C_down,
     texture_font_char_eu_button_C_left,
@@ -1886,18 +1905,25 @@ const Texture *const main_font_lut[] = {
     texture_font_char_eu_button_C,
     texture_font_char_eu_button_Z,
     texture_font_char_eu_button_R,
-    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-    texture_font_char_eu_comma,
+    //6X
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+    //7X
+    texture_font_char_eu_comma, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+    //8X
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-    texture_font_char_EU_slash,
+    //9X
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+    //AX
+    texture_font_char_EU_slash, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+    //BX
+    0x0, 0x0, texture_font_char_eu_upperograve, texture_font_char_eu_upperigrave, texture_font_char_eu_lowerigrave, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 
+    //CX
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+    //DX
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-    0x0,
+    //EX
+    0x0, 0x0,
     texture_font_char_eu_open_parentheses,
     texture_font_char_eu_close_open_parentheses,
     texture_font_char_eu_close_parentheses,
@@ -1912,6 +1938,7 @@ const Texture *const main_font_lut[] = {
     texture_font_char_eu_eszeet,
     texture_font_char_eu_Cedilla,
     texture_font_char_eu_cedilla,
+    //FX
     0x0, 0x0, 0x0,
     texture_font_char_eu_exclamation,
     texture_font_char_eu_percent,

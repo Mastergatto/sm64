@@ -18,12 +18,12 @@
  * Global Text
  */
 // File Select
-#define TEXT_NEW _("NEW") // New File Text
+#define TEXT_NEW _("NUOVO") // New File Text, NOTE: It doesn't allow more than 4 characters, so 'nuovo' -> 'novo'
 #define TEXT_4DASHES _("----") // Used in Score File Menu
 
 // Ingame Menu
-#define TEXT_PAUSE _("PAUSE") // Pause text, Castle Courses
-#define TEXT_HUD_CONGRATULATIONS _("CONGRATULATIONS") // Course Complete Text, Bowser Courses
+#define TEXT_PAUSE _("PAUSA") // Pause text, Castle Courses
+#define TEXT_HUD_CONGRATULATIONS _("CONGRATULAZIONI") // Course Complete Text, Bowser Courses
 
 #if defined(VERSION_JP) || defined(VERSION_SH)
 
@@ -131,39 +131,39 @@
  */
 // Main Screens
 #define TEXT_MARIO _("MARIO") // View Score Menu
-#define TEXT_SELECT_FILE _("SELECT FILE")
-#define TEXT_CHECK_FILE _("CHECK FILE")
-#define TEXT_COPY_FILE _("COPY FILE")
-#define TEXT_ERASE_FILE _("ERASE FILE")
-#define TEXT_SOUND_SELECT _("SOUND SELECT")
+#define TEXT_SELECT_FILE _("SCELTA  FILE")
+#define TEXT_CHECK_FILE _("RISULTATI")
+#define TEXT_COPY_FILE _("COPIA FILE")
+#define TEXT_ERASE_FILE _("ELIMINA FILE")
+#define TEXT_SOUND_SELECT _("SCELTA  SUONO")
 #define TEXT_FILE_MARIO_A _("MARIO A")
 #define TEXT_FILE_MARIO_B _("MARIO B")
 #define TEXT_FILE_MARIO_C _("MARIO C")
 #define TEXT_FILE_MARIO_D _("MARIO D")
 
 // Menu Options
-#define TEXT_SCORE _("SCORE")
-#define TEXT_COPY _("COPY")
-#define TEXT_ERASE _("ERASE")
+#define TEXT_SCORE _("PRIMATO")
+#define TEXT_COPY _("COPIA")
+#define TEXT_ERASE _("ELIMINA")
 
 // Sound Options
 #define TEXT_STEREO _("STEREO")
 #define TEXT_MONO _("MONO")
-#define TEXT_HEADSET _("HEADSET")
+#define TEXT_HEADSET _("CUFFIE")
 
 // Misc Menu Text
-#define TEXT_SAVED_DATA_EXISTS _("SAVED DATA EXITS") // Misspell
-#define TEXT_NO_SAVED_DATA_EXISTS _("NO SAVED DATA EXISTS")
+#define TEXT_SAVED_DATA_EXISTS _("DATI PRESENTI")
+#define TEXT_NO_SAVED_DATA_EXISTS _("DATI INESISTENTI")
 
 // Inside a Menu
-#define TEXT_RETURN _("RETURN")
-#define TEXT_CHECK_SCORE _("CHECK SCORE")
-#define TEXT_COPY_FILE_BUTTON _("COPY FILE")
-#define TEXT_ERASE_FILE_BUTTON _("ERASE FILE")
+#define TEXT_RETURN _("RITORNA")
+#define TEXT_CHECK_SCORE _("RISULTATI")
+#define TEXT_COPY_FILE_BUTTON _("COPIA  FILE")
+#define TEXT_ERASE_FILE_BUTTON _("ELIMINA  FILE")
 
 // Score Menu
-#define TEXT_HI_SCORE _("HI SCORE")
-#define TEXT_MY_SCORE _("MY SCORE")
+#define TEXT_HI_SCORE _("PRIMATO") // Star select
+#define TEXT_MY_SCORE _("PRIMATO") // Pause Menu
 // Score Mario Text ("☺" is the Mario face defined in the US/EU menu char table)
 #define TEXT_SCORE_MARIO_A _("☺A")
 #define TEXT_SCORE_MARIO_B _("☺B")
@@ -171,55 +171,55 @@
 #define TEXT_SCORE_MARIO_D _("☺D")
 
 // Copy Menu
-#define TEXT_COPY_IT_TO_WHERE _("COPY IT TO WHERE?")
-#define TEXT_COPYING_COMPLETED _("COPYING COMPLETED")
-#define TEXT_NO_FILE_TO_COPY_FROM _("NO EMPTY FILE")
+#define TEXT_COPY_IT_TO_WHERE _("COPIARE DOVE?")
+#define TEXT_COPYING_COMPLETED _("COPIA COMPLETATA")
+#define TEXT_NO_FILE_TO_COPY_FROM _("NESSUN FILE VUOTO")
 
 // Erase Menu
-#define TEXT_SURE _("SURE?")
-#define TEXT_YES _("YES")
+#define TEXT_SURE _("SICURI?")
+#define TEXT_YES _("SÌ")
 #define TEXT_NO _("NO")
-#define TEXT_FILE_MARIO_A_JUST_ERASED _("MARIO A JUST ERASED")
+#define TEXT_FILE_MARIO_A_JUST_ERASED _("MARIO A ELIMINATO")
 
 /**
  * Menus Text (Pause, Course Completed)
  */
 // Main Courses
-#define TEXT_COURSE _("COURSE")
-#define TEXT_MYSCORE _("MYSCORE")
-#define TEXT_CONTINUE _("CONTINUE")
-#define TEXT_EXIT_COURSE _("EXIT COURSE")
+#define TEXT_COURSE _("MONDO")
+#define TEXT_MYSCORE _("PRIMATO")
+#define TEXT_CONTINUE _("CONTINUA")
+#define TEXT_EXIT_COURSE _("ESCI DAL MONDO")
 #ifndef VERSION_EU // "R" text is different in EU
-#define TEXT_CAMERA_ANGLE_R _("SET CAMERA ANGLE WITH R")
+#define TEXT_CAMERA_ANGLE_R _("CAMBIA ANGOLO CON [R]")
 #endif
 
 // Camera Options
 #define TEXT_LAKITU_MARIO _("LAKITU + MARIO")
-#define TEXT_LAKITU_STOP _("LAKITU + STOP")
-#define TEXT_NORMAL_UPCLOSE __("(NORMAL)(UP-CLOSE)")
-#define TEXT_NORMAL_FIXED __("(NORMAL)(FIXED)")
+#define TEXT_LAKITU_STOP _("LAKITU + BLOCCO")
+#define TEXT_NORMAL_UPCLOSE __("(NORMALE)(VICINA)")
+#define TEXT_NORMAL_FIXED __("(NORMALE)(FISSA)")
 
 // Course Completed Misc Text
-#define TEXT_CATCH _("CATCH")
-#define TEXT_CLEAR _("CLEAR")
-#define TEXT_HUD_HI_SCORE _("HI SCORE")
+#define TEXT_CATCH _("PRESA")
+#define TEXT_CLEAR _("COMPLETATA")
+#define TEXT_HUD_HI_SCORE _("PRIMATO")
 
 // Save Options
-#define TEXT_SAVE_AND_CONTINUE _("SAVE & CONTINUE")
-#define TEXT_SAVE_AND_QUIT _("SAVE & QUIT")
-#define TEXT_CONTINUE_WITHOUT_SAVING _("CONTINUE, DON'T SAVE")
+#define TEXT_SAVE_AND_CONTINUE _("SALVA & CONTINUA")
+#define TEXT_SAVE_AND_QUIT _("SALVA & ESCI")
+#define TEXT_CONTINUE_WITHOUT_SAVING _("CONTINUA, NON SALVARE")
 
 /**
  * Ending Peach cutscene text.
  */
 #define TEXT_FILE_MARIO_EXCLAMATION _("Mario!")
-#define TEXT_POWER_STARS_RESTORED __("The power of the Stars is restored to the castle...")
-#define TEXT_THANKS_TO_YOU __("...and it's all thanks to you!")
-#define TEXT_THANK_YOU_MARIO __("Thank you, Mario!")
-#define TEXT_SOMETHING_SPECIAL __("We have to do something special for you...")
-#define TEXT_LISTEN_EVERYBODY _("Listen, everybody,")
-#define TEXT_LETS_HAVE_CAKE _("let's bake a delicious cake...")
-#define TEXT_FOR_MARIO _("...for Mario...")
+#define TEXT_POWER_STARS_RESTORED __("Il potere delle stelle è ripristinato nel castello...")
+#define TEXT_THANKS_TO_YOU __("...ed è tutto grazie a te!")
+#define TEXT_THANK_YOU_MARIO __("Grazie, Mario!")
+#define TEXT_SOMETHING_SPECIAL __("Dobbiamo fare qualcosa di speciale per te...")
+#define TEXT_LISTEN_EVERYBODY _("Ascoltatemi tutti,")
+#define TEXT_LETS_HAVE_CAKE _("andiamo a sfornare una torta deliziosa...")
+#define TEXT_FOR_MARIO _("...per Mario...")
 #define TEXT_FILE_MARIO_QUESTION _("Mario!")
 
 #endif
@@ -253,7 +253,7 @@
 #define TEXT_ERASE_FR _("EFFACER")
 #define TEXT_ERASE_DE _("LÖSCHEN")
 
-#define TEXT_OPTION _("OPTION")  // new in EU
+#define TEXT_OPTION _("OPZIONE")  // new in EU
 #define TEXT_OPTION_FR _("OPTION")
 #define TEXT_OPTION_DE _("OPTIONEN")
 
@@ -296,7 +296,7 @@
 #define TEXT_SOUND_SELECT_FR _("SON")
 #define TEXT_SOUND_SELECT_DE _("SOUND")
 
-#define TEXT_LANGUAGE_SELECT _("LANGUAGE SELECT")  // new in EU
+#define TEXT_LANGUAGE_SELECT _("SELEZIONE  LINGUA")  // new in EU
 #define TEXT_LANGUAGE_SELECT_FR _("SELECTION LANGUE")
 #define TEXT_LANGUAGE_SELECT_DE _("WwHLE SPRACHE")
 
@@ -308,7 +308,7 @@
 #define TEXT_MONO_DE _("MONO")
 #define TEXT_HEADSET_DE _("PHONES")
 
-#define TEXT_ENGLISH _("ENGLISH")
+#define TEXT_ENGLISH _("ITALIANO")
 #define TEXT_FRENCH _("FRANÇAIS")
 #define TEXT_GERMAN _("DEUTSCH")
 
@@ -327,7 +327,7 @@
  */
 // Main Courses
 // English, "R" text is different
-#define TEXT_CAMERA_ANGLE_R             _("SET CAMERA ANGLE WITH [R]")
+#define TEXT_CAMERA_ANGLE_R             _("CAMBIA ANGOLO CON [R]")
 // French
 #define TEXT_COURSE_FR                  _("NIVEAU")
 #define TEXT_MY_SCORE_FR                _("MON SCORE")

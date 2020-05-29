@@ -260,11 +260,11 @@ static unsigned char textMarioAJustErased[][20] = {
     { TEXT_FILE_MARIO_A_JUST_ERASED }, { TEXT_FILE_MARIO_A_JUST_ERASED_FR }, { TEXT_FILE_MARIO_A_JUST_ERASED_DE }
 };
 
-static unsigned char textSoundSelect[][13] = {
+static unsigned char textSoundSelect[][14] = {
     { TEXT_SOUND_SELECT }, { TEXT_SOUND_SELECT_FR }, { TEXT_SOUND_SELECT_DE }
 };
 
-static unsigned char textLanguageSelect[][17] = {
+static unsigned char textLanguageSelect[][18] = {
     { TEXT_LANGUAGE_SELECT }, { TEXT_LANGUAGE_SELECT_FR }, { TEXT_LANGUAGE_SELECT_DE }
 };
 
@@ -280,7 +280,7 @@ static unsigned char textMario[] = { TEXT_MARIO };
 static unsigned char textHiScore[][15] = {{ TEXT_HI_SCORE }, { TEXT_HI_SCORE_FR }, { TEXT_HI_SCORE_DE }};
 static unsigned char textMyScore[][10] = {{ TEXT_MY_SCORE }, { TEXT_MY_SCORE_FR }, { TEXT_MY_SCORE_DE }};
 
-static unsigned char textNew[][5] = {{ TEXT_NEW }, { TEXT_NEW_FR }, { TEXT_NEW_DE }};
+static unsigned char textNew[][6] = {{ TEXT_NEW }, { TEXT_NEW_FR }, { TEXT_NEW_DE }};
 static unsigned char starIcon[] = { GLYPH_STAR, GLYPH_SPACE };
 static unsigned char xIcon[] = { GLYPH_MULTIPLY, GLYPH_SPACE };
 #endif

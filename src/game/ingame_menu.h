@@ -86,6 +86,10 @@ enum DialogSpecialChars {
     DIALOG_CHAR_LOWER_I_UMLAUT = 0xA2,     // 'i' umlaut
     DIALOG_CHAR_I_NO_DIA = 0xEB,           // 'i' without diacritic
     DIALOG_CHAR_DOUBLE_LOW_QUOTE = 0xF0,   // German opening quotation mark
+    DIALOG_CHAR_LOWER_O_GRAVE = 0xB0,      // 'o' grave
+    DIALOG_CHAR_UPPER_O_GRAVE = 0xB1,      // 'o' grave
+    DIALOG_CHAR_UPPER_I_GRAVE = 0xB2,      // 'i' grave
+    DIALOG_CHAR_LOWER_I_GRAVE = 0xB3,      // 'i' grave
 #endif
 #if defined(VERSION_US) || defined(VERSION_EU)
     DIALOG_CHAR_SLASH = 0xD0,

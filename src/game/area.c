@@ -81,7 +81,7 @@ Vp D_8032CF00 = { {
 
 #ifdef VERSION_EU
 const char *gNoControllerMsg[] = {
-    "NO CONTROLLER",
+    "CONTROLLER ASSENTE",
     "MANETTE DEBRANCHEE",
     "CONTROLLER FEHLT",
 };
@@ -117,6 +117,7 @@ void print_intro_text(void) {
 #endif
         } else {
 #ifdef VERSION_EU
+            print_text(20, 38, "PREMI");
             print_text(20, 20, "START");
 #else
             print_text_centered(60, 38, "PRESS");
