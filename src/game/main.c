@@ -147,6 +147,7 @@ void handle_nmi_request(void) {
     stop_sounds_in_continuous_banks();
     sound_banks_disable(SEQ_PLAYER_SFX, SOUND_BANKS_BACKGROUND);
     fadeout_music(90);
+
 #ifdef VERSION_SH
     func_sh_802f69cc();
 #endif
@@ -218,15 +219,10 @@ void handle_vblank(void) {
 
     stub_main_3();
     gNumVblanks++;
-#ifdef VERSION_SH
+
     if (gResetTimer > 0 && gResetTimer < 100) {
         gResetTimer++;
     }
-#else
-    if (gResetTimer > 0) {
-        gResetTimer++;
-    }
-#endif
 
     receive_new_tasks();
 
@@ -253,9 +249,7 @@ void handle_vblank(void) {
             start_sptask(M_GFXTASK);
         }
     }
-#ifdef VERSION_SH
     rumble_thread_update_vi();
-#endif
 
     // Notify the game loop about the vblank.
     if (gVblankHandler1 != NULL) {

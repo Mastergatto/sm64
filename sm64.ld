@@ -94,9 +94,7 @@ SECTIONS
       BUILD_DIR/src/game/main.o(.text);
       BUILD_DIR/src/game/game_init.o(.text);
       BUILD_DIR/src/game/sound_init.o(.text);
-#ifdef VERSION_SH
       BUILD_DIR/src/game/rumble_init.o(.text);
-#endif
       BUILD_DIR/src/game/level_update.o(.text);
       BUILD_DIR/src/game/interaction.o(.text);
       BUILD_DIR/src/game/mario.o(.text);
@@ -194,9 +192,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osContStartReadData.o(.text);
       BUILD_DIR/libultra.a:osContInit.o(.text);
       BUILD_DIR/libultra.a:osEepromProbe.o(.text);
-#ifdef VERSION_SH
       BUILD_DIR/libultra.a:motor.o(.text);
-#endif
       BUILD_DIR/libultra.a:osInvalDCache.o(.text);
       BUILD_DIR/libultra.a:osPiStartDma.o(.text);
       BUILD_DIR/libultra.a:bzero.o(.text)
@@ -268,12 +264,10 @@ SECTIONS
       BUILD_DIR/libultra.a:__osSiRawStartDma.o(.text)
       BUILD_DIR/libultra.a:osSetTimer.o(.text)
       BUILD_DIR/libultra.a:osEepromWrite.o(.text)
-#ifdef VERSION_SH
       BUILD_DIR/libultra.a:osPfsIsPlug.o(.text)
       BUILD_DIR/libultra.a:crc.o(.text)
       BUILD_DIR/libultra.a:contramwrite.o(.text)
       BUILD_DIR/libultra.a:contramread.o(.text)
-#endif
       BUILD_DIR/libultra.a:osJamMesg.o(.text)
       BUILD_DIR/libultra.a:osPiGetCmdQueue.o(.text)
       BUILD_DIR/libultra.a:osEepromRead.o(.text)
@@ -300,9 +294,7 @@ SECTIONS
       BUILD_DIR/libultra.a:__osSetGlobalIntMask.o(.text)
 #endif
       BUILD_DIR/libultra.a:func_802F71F0.o(.text)
-#ifdef VERSION_SH
       BUILD_DIR/libultra.a:unk_shindou_file_3.o(.text)
-#endif
       BUILD_DIR/lib/rsp.o(.text);
 #else
       BUILD_DIR/src/game*.o(.text);
@@ -421,9 +413,7 @@ SECTIONS
       BUILD_DIR/src/game/main.o(.data*);
       BUILD_DIR/src/game/game_init.o(.data*);
       BUILD_DIR/src/game/sound_init.o(.data*);
-#ifdef VERSION_SH
       BUILD_DIR/src/game/rumble_init.o(.data*);
-#endif
       BUILD_DIR/src/game/level_update.o(.data*);
       BUILD_DIR/src/game/interaction.o(.data*);
       BUILD_DIR/src/game/mario.o(.data*);
@@ -492,9 +482,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osViTable.o(.data*);
       BUILD_DIR/libultra.a:osCreatePiManager.o(.data*);
       BUILD_DIR/libultra.a:osContInit.o(.data*);
-#ifdef VERSION_SH
       BUILD_DIR/libultra.a:motor.o(.data*);
-#endif
       BUILD_DIR/libultra.a:osAiSetNextBuffer.o(.data*);
       BUILD_DIR/libultra.a:_Litob.o(.data*);
       BUILD_DIR/libultra.a:__osExceptionPreamble.o(.data*);
@@ -631,9 +619,7 @@ SECTIONS
       BUILD_DIR/src/game/main.o(.bss*);
       BUILD_DIR/src/game/game_init.o(.bss*);
       BUILD_DIR/src/game/sound_init.o(.bss*);
-#ifdef VERSION_SH
       BUILD_DIR/src/game/rumble_init.o(.bss*);
-#endif
       BUILD_DIR/src/game/level_update.o(.bss*);
       BUILD_DIR/src/game/interaction.o(.bss*);
       BUILD_DIR/src/game/mario.o(.bss*);
@@ -689,9 +675,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osCreatePiManager.o(.bss*);
       BUILD_DIR/libultra.a:osContStartReadData.o(.bss*);
       BUILD_DIR/libultra.a:osContInit.o(.bss*);
-#ifdef VERSION_SH
       BUILD_DIR/libultra.a:motor.o(.bss*);
-#endif
       BUILD_DIR/libultra.a:guRotateF.o(.bss*);
 #ifdef VERSION_SH
       BUILD_DIR/libultra.a:osCartRomInit.o(.bss*);

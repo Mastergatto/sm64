@@ -152,8 +152,8 @@ s32 intro_default(void) {
 
     if (gPlayer1Controller->buttonPressed & START_BUTTON) {
         play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-#ifdef VERSION_SH
         queue_rumble_data(60, 70);
+#ifdef VERSION_SH
         func_sh_8024C89C(1);
 #endif
         sp1C = 100 + gDebugLevelSelect;
@@ -178,8 +178,8 @@ s32 intro_game_over(void) {
 
     if (gPlayer1Controller->buttonPressed & START_BUTTON) {
         play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-#ifdef VERSION_SH
         queue_rumble_data(60, 70);
+#ifdef VERSION_SH
         func_sh_8024C89C(1);
 #endif
         sp1C = 100 + gDebugLevelSelect;

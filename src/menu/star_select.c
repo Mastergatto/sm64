@@ -421,8 +421,8 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
 #else
             play_sound(SOUND_MENU_STAR_SOUND_LETS_A_GO, gGlobalSoundSource);
 #endif
-#ifdef VERSION_SH
             queue_rumble_data(60, 70);
+#ifdef VERSION_SH
             func_sh_8024C89C(1);
 #endif
             if (sInitSelectedActNum >= sSelectedActIndex + 1) {

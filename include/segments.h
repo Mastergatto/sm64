@@ -21,7 +21,7 @@
 #define SEG_BUFFERS      0x801C1000
 
 #ifdef VERSION_EU
-#define SEG_MAIN         0x80241800 // TODO: Investigate why it's different?
+#define SEG_MAIN         0x80249000
 #elif defined(VERSION_SH)
 #define SEG_MAIN         0x80249000
 #else

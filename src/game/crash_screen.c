@@ -117,11 +117,7 @@ void crash_screen_print(s32 x, s32 y, const char *fmt, ...) {
     if (size > 0) {
         ptr = buf;
 
-#ifdef VERSION_SH
         while (size > 0) {
-#else
-        while (*ptr) {
-#endif
 
             glyph = gCrashScreenCharToGlyph[*ptr & 0x7f];
 
@@ -129,9 +125,7 @@ void crash_screen_print(s32 x, s32 y, const char *fmt, ...) {
                 crash_screen_draw_glyph(x, y, glyph);
             }
 
-#ifdef VERSION_SH
             size--;
-#endif
 
             ptr++;
             x += 6;
