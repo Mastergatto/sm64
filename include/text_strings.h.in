@@ -18,7 +18,7 @@
  * Global Text
  */
 // File Select
-#define TEXT_NEW _("NUOVO") // New File Text, NOTE: It doesn't allow more than 4 characters, so 'nuovo' -> 'novo'
+#define TEXT_NEW _("NUOVO") // New File Text
 #define TEXT_4DASHES _("----") // Used in Score File Menu
 
 // Ingame Menu
