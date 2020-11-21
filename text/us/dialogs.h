@@ -11,7 +11,7 @@ Prima cosa, puoi parlare\n\
 alla Buon-omba. (Premere\n\
 [B] per parlare.) Lei \n\
 sicuramente ti aiuterà, e\n\
-così anche le sue compagne\n\
+così  anche le sue compagne\n\
 negli altri mondi. Per\n\
 leggere cartelli, fermati,\n\
 affacciati davanti a loro\n\
@@ -144,7 +144,7 @@ vediamo! Uao, sei\n\
 diventato veloce! Ti stai\n\
 allenando di nascosto o\n\
 è il potere delle Stelle\n\
-Magiche a renderti così?\n\
+Magiche a renderti così ?\n\
 Ho il morale a terra,\n\
 dopo aver perso l'ultima\n\
 gara. Questa è la mia\n\
@@ -854,7 +854,7 @@ sott'acqua."))
 DEFINE_DIALOG(DIALOG_066, 1, 5, 30, 200, _("\
 Mario, sono Peach!\n\
 Stai attento! Bowser è\n\
-così malvagio! Lui proverà\n\
+così  malvagio! Lui proverà\n\
 a bruciarti con il suo\n\
 terribile respiro di fuoco.\n\
 Vagli dietro e afferragli\n\
@@ -1101,7 +1101,7 @@ Ti prego, Mario, devi\n\
 salvarla! Sapevi che ci\n\
 sono mondi ostili dentro\n\
 le pareti?\n\
-Sì, è vero. Ci sono anche\n\
+Sì , è vero. Ci sono anche\n\
 le truppe di Bowser.\n\
 Ah, ecco, prendi questa.\n\
 L'ho conservata per te."))
@@ -1200,7 +1200,7 @@ Bua ha ha!"))
 
 DEFINE_DIALOG(DIALOG_093, 1, 5, 30, 200, _("\
 Mario! Ancora tu!\n\
-Beh, va bene così, stavo\n\
+Beh, va bene così , stavo\n\
 cercando qualcosa da\n\
 arrostire con il mio\n\
 respiro infuocato!\n\
@@ -1349,7 +1349,7 @@ cacciatori di teste di\n\
 recente? Mi servirebbe\n\
 proprio un nuovo corpo!\n\
 Brrr! La mia faccia\n\
-così si congela!"))
+così  si congela!"))
 
 DEFINE_DIALOG(DIALOG_110, 1, 4, 95, 200, _("\
 Mi serve una testa con le\n\
@@ -1452,7 +1452,7 @@ DEFINE_DIALOG(DIALOG_118, 1, 5, 95, 200, _("\
 Grrrrumbbble!\n\
 Cosa...successo?\n\
 Noi...tritati come sassi.\n\
-Tu così forte!\n\
+Tu così  forte!\n\
 \n\
 Tu regnare piramide\n\
 antica! Per oggi...\n\
@@ -1641,7 +1641,7 @@ Stelle Magiche, sarai in\n\
 grado di aprire la grande\n\
 porta con la stella.\n\
 La Principessa deve\n\
-essere lì dentro!"))
+essere lì  dentro!"))
 
 DEFINE_DIALOG(DIALOG_134, 1, 5, 30, 200, _("\
 I nomi delle Stelle sono\n\
@@ -1684,7 +1684,7 @@ recuperato da loro."))
 
 DEFINE_DIALOG(DIALOG_136, 1, 6, 30, 200, _("\
 Uao! Hai già recuperato\n\
-così tante Stelle?\n\
+così  tante Stelle?\n\
 Ben fatto, Mario!\n\
 Scommetto che ci tirerai\n\
 subito fuori dai guai!\n\
@@ -1786,7 +1786,7 @@ Magiche! Ora puoi aprire\n\
 la grande porta con la\n\
 stella! Riesci a sentire\n\
 le grida d'aiuto della\n\
-Principessa? Bowser è lì."))
+Principessa? Bowser è lì ."))
 
 DEFINE_DIALOG(DIALOG_144, 1, 6, 150, 200, _("\
 Hai recuperato 30 Stelle\n\
@@ -1798,7 +1798,7 @@ tutto il resto?\n\
 Hai fatto lo schianto sui\n\
 due pilastri? Non hai\n\
 mica perso il cappello?\n\
-Se sì, dovrai vedertela\n\
+Se sì , dovrai vedertela\n\
 con l'avvoltoio per\n\
 riprendertelo!\n\
 Dicono che Bowser è\n\
@@ -1813,7 +1813,7 @@ Hai recuperato 50 Stelle\n\
 Magiche! Ora puoi aprire\n\
 la grande porta con la\n\
 stella al secondo piano.\n\
-Sai, Bowser si trova lì. \n\
+Sai, Bowser si trova lì . \n\
 \n\
 Oh! Hai trovato tutti gli\n\
 Interruttori dei Cappelli,\n\
@@ -1894,13 +1894,13 @@ cosa farò?\n\
 Il soffitto è rovinato,\n\
 il pavimento è bagnato...\n\
 Cosa fare, cosa fare?\n\
-Uff...uff...mi fa così...\n\
+Uff...uff...mi fa così ...\n\
 ARRABBIARE!!!\n\
 Sta andando tutto storto\n\
 da quando ho trovato\n\
 questa Stella...è così\n\
 luminosa, ma mi fa\n\
-sentire....così strano..."))
+sentire....così  strano..."))
 
 DEFINE_DIALOG(DIALOG_151, 1, 4, 30, 200, _("\
 Non ne posso più!\n\
@@ -1973,7 +1973,7 @@ salto alto nel dipinto."))
 
 DEFINE_DIALOG(DIALOG_156, 1, 5, 30, 200, _("\
 Il mondo dentro \n\
-l'orologio è così strano!\n\
+l'orologio è così  strano!\n\
 Prima di saltarci dentro,\n\
 osserva la posizione della\n\
 lancetta delle ore!"))
@@ -2025,7 +2025,7 @@ premi [A] o [B]."))
 DEFINE_DIALOG(DIALOG_161, 1, 6, 30, 200, _("\
 Mario!!!\n\
 Sei veramente tu???\n\
-È passato così tanto\n\
+È passato così  tanto\n\
 tempo dalla nostra ultima\n\
 avventura! Mi avevano\n\
 detto che potevo\n\
@@ -2046,7 +2046,7 @@ a Super Mario 64! Questa\n\
 è la fine del gioco, ma\n\
 non del divertimento.\n\
 Noi vogliamo che tu\n\
-continui a giocare, così\n\
+continui a giocare, così \n\
 abbiamo qualcosina per te.\n\
 Speriamo che ti piaccia!\n\
 Divertiti!!!』\n\
@@ -2063,7 +2063,7 @@ Non ho tempo di litigare\n\
 per le Stelle. Ecco,\n\
 prendi. Non ho mai\n\
 voluto nascondertelo...\n\
-È solo che vado così\n\
+È solo che vado così \n\
 di fretta. Tutto qui.\n\
 Ora devo andare.\n\
 Oof! Lasciami andare!"))
