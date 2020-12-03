@@ -266,8 +266,9 @@ piano nel corridoio!"))
 
 DEFINE_DIALOG(DIALOG_020, 1, 6, 95, 150, _("\
 Caro Mario,\n\
-vieni al castello. Ti\n\
-ho sfornato una torta.\n\
+vieni al castello.\n\
+Ti ho fatto una torta.\n\
+\n\
 Con affetto,\n\
 Principessa Peach"))
 
@@ -1044,7 +1045,7 @@ Ah, a proposito, guarda\n\
 cosa ho trovato!"))
 
 DEFINE_DIALOG(DIALOG_077, 1, 4, 150, 200, _("\
-È assolutamente VIETATO\n\
+È severamente VIETATO\n\
 fare uno Schianto a Terra\n\
 sui pilastri. \n\
 Davvero, non farlo."))

@@ -51,10 +51,10 @@
 #define WARP_NODE_CREDITS_MIN 0xF8
 
 // TODO: Make these ifdefs better
-const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
-const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
-const char *credits03[] = { "2SYSTEM PROGRAMMERS", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
-const char *credits04[] = { "3PROGRAMMERS", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
+const char *credits01[] = { "1REGISTA DEL GIOCO", "SHIGERU MIYAMOTO" };
+const char *credits02[] = { "2AIUTO REGISTI", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
+const char *credits03[] = { "2PROGRAMMATORI DI SISTEMA", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
+const char *credits04[] = { "3PROGRAMMATORI", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
 #if defined(VERSION_JP) || defined(VERSION_SH)
 const char *credits05[] = { "1CAMERA PROGRAMMER", "TAKUMI KAWAGOE" };
 const char *credits06[] = { "1MARIO FACE PROGRAMMER", "GILES GODDARD" };
@@ -91,11 +91,11 @@ const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
 #endif
 #else // VERSION_US || VERSION_EU
 const char *credits05[] = {
-    "4CAMERA PROGRAMMER", "MARIO FACE PROGRAMMER", "TAKUMI KAWAGOE", "GILES GODDARD"
+    "4PROGRAMMATORE TELECAMERA", "PROGRAMMATORE TESTA MARIO", "TAKUMI KAWAGOE", "GILES GODDARD"
 }; // US combines camera programmer and Mario face programmer
-const char *credits06[] = { "2COURSE DIRECTORS", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
-const char *credits07[] = { "2COURSE DESIGNERS", "KENTA USUI", "NAOKI MORI" };
-const char *credits08[] = { "3COURSE DESIGNERS", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA",
+const char *credits06[] = { "2DIRETTORI AMBIENTI", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
+const char *credits07[] = { "2PROGETTISTI AMBIENTI", "KENTA USUI", "NAOKI MORI" };
+const char *credits08[] = { "3PROGETTISTI AMBIENTI", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA",
                             "KATSUHIKO KANNO" };
 #ifdef VERSION_US
 const char *credits09[] = { "1SOUND COMPOSER", "KOJI KONDO" };
@@ -109,29 +109,29 @@ const char *credits15[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KA
 const char *credits16[] = { "5SCREEN TEXT WRITER", "TRANSLATION", "LESLIE SWAN", "MINA AKINO",
                             "HIRO YAMADA" }; // ...in order to make room for these 2 new lines
 #else // VERSION_EU
-const char *credits09[] = { "7SOUND COMPOSER", "SOUND EFFECTS", "SOUND PROGRAMMER", "KOJI KONDO",
+const char *credits09[] = { "7COMPOSITORE", "EFFETTI SONORI", "PROGRAMMATORE SUONI", "KOJI KONDO",
                             "YOJI INAGAKI", "HIDEAKI SHIMIZU" };
-const char *credits10[] = { "63-D ANIMATORS", "ADDITIONAL GRAPHICS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA",
+const char *credits10[] = { "6ANIMATORI 3-D", "PROGETTISTA GRAFICO", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA",
                             "MASANAO ARIMOTO" };
-const char *credits11[] = { "3TECHNICAL SUPPORT", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
-const char *credits12[] = { "1TECHNICAL SUPPORT", "SGI N64 PROJECT STAFF" };
-const char *credits13[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
-const char *credits14[] = { "5SCREEN TEXT WRITER", "ENGLISH TRANSLATION", "LESLIE SWAN", "MINA AKINO",
+const char *credits11[] = { "3SUPPORTO TECNICO", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
+const char *credits12[] = { "1SUPPORTO TECNICO", "SGI N64 PROJECT STAFF" };
+const char *credits13[] = { "2GESTIONE DEI PROCESSI", "KIMIYOSHI FUKUI", "KEIZO KATO" };
+const char *credits14[] = { "5SCENEGGIATORE", "TRADUZIONE INGLESE", "LESLIE SWAN", "MINA AKINO",
                             "HIRO YAMADA" };
-const char *credits15[] = { "4SCREEN TEXT WRITER", "FRENCH TRANSLATION", "JULIEN BARDAKOFF",
+const char *credits15[] = { "4SCENEGGIATORE", "TRADUZIONE FRANCESE", "JULIEN BARDAKOFF",
                             "KENJI HARAGUCHI" };
-const char *credits16[] = { "4SCREEN TEXT WRITER", "GERMAN TRANSLATION", "THOMAS GOERG",
+const char *credits16[] = { "4SCENEGGIATORE", "TRADUZIONE TEDESCA", "THOMAS GOERG",
                             "THOMAS SPINDLER" };
 #endif
-const char *credits17[] = { "4MARIO VOICE", "PEACH VOICE", "CHARLES MARTINET", "LESLIE SWAN" };
-const char *credits18[] = { "3SPECIAL THANKS TO", "EAD STAFF", "ALL NINTENDO PERSONNEL",
+const char *credits17[] = { "4VOCE DI MARIO", "VOCE DI PEACH", "CHARLES MARTINET", "LESLIE SWAN" };
+const char *credits18[] = { "3SPECIALI RINGRAZIAMENTI VANNO A", "PERSONALE DI EAD", "TUTTI I DIPENDENTI NINTENDO",
 #ifdef VERSION_US
                            "MARIO CLUB STAFF" };
 #else // VERSION_EU
-                           "SUPER MARIO CLUB STAFF" };
+                           "PERSONALE DI SUPER MARIO CLUB" };
 #endif
-const char *credits19[] = { "1PRODUCER", "SHIGERU MIYAMOTO" };
-const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
+const char *credits19[] = { "1PRODUTTORE", "SHIGERU MIYAMOTO" };
+const char *credits20[] = { "1PRODUTTORE ESECUTIVO", "HIROSHI YAMAUCHI" };
 #endif
 
 
