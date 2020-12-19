@@ -2,6 +2,7 @@
 #define AUDIO_SYNTHESIS_H
 
 #include "internal.h"
+#include "config.h"
 
 #ifdef VERSION_SH
 #define DEFAULT_LEN_1CH 0x180

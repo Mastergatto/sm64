@@ -1,6 +1,7 @@
 #include "libultra_internal.h"
+#include "config.h"
 
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
 u8 __osContAddressCrc(u16 addr) {
     u8 temp;
     u8 temp2;

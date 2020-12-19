@@ -1,5 +1,7 @@
 // water_pillar.c.inc
 
+#include "config.h"
+
 void water_level_pillar_undrained(void) {
     struct Object *otherWaterPillar;
     switch (o->oAction) {
@@ -40,7 +42,7 @@ void water_level_pillar_undrained(void) {
                     (s32) approach_f32_symmetric(gEnvironmentLevels[2], -2450.0f, 5.0f);
                 gEnvironmentLevels[0] =
                     (s32) approach_f32_symmetric(gEnvironmentLevels[0], -2450.0f, 5.0f);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 reset_rumble_timers_2(2);
 #endif
             } else

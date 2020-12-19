@@ -11,7 +11,11 @@
 
 // 0x07023000 - 0x07023FFF
 ALIGNED8 static const Texture cake_end_texture_eu_35[] = {
+#ifdef VERSION_IT
+#include "levels/ending/it_023000.rgba16.inc.c"
+#else
 #include "levels/ending/eu_023000.rgba16.inc.c"
+#endif
 };
 
 // 0x07024000 - 0x07024FFF
@@ -26,7 +30,11 @@ ALIGNED8 static const Texture cake_end_texture_eu_37[] = {
 
 // 0x07026000 - 0x07026FFF
 ALIGNED8 static const Texture cake_end_texture_eu_38[] = {
+#ifdef VERSION_IT
+#include "levels/ending/it_026000.rgba16.inc.c"
+#else
 #include "levels/ending/eu_026000.rgba16.inc.c"
+#endif
 };
 
 // 0x07027000 - 0x07027FFF

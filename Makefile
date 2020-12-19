@@ -32,25 +32,37 @@ $(eval $(call validate-option,COMPILER,ido gcc))
 #   us - builds the 1996 North American version
 #   eu - builds the 1997 PAL version
 #   sh - builds the 1997 Japanese Shindou version, with rumble pak support
+#   it - builds the 1997 PAL version but with Italian translation, bug fixes and rumble support
 VERSION ?= us
-$(eval $(call validate-option,VERSION,jp us eu sh))
+$(eval $(call validate-option,VERSION,jp us eu sh it))
 
 ifeq      ($(VERSION),jp)
+  BASE_VERSION ?= $(VERSION)
   DEFINES   += VERSION_JP=1
   OPT_FLAGS := -g
   GRUCODE   ?= f3d_old
   VERSION_JP_US  ?= true
 else ifeq ($(VERSION),us)
+  BASE_VERSION ?= $(VERSION)
   DEFINES   += VERSION_US=1
   OPT_FLAGS := -g
   GRUCODE   ?= f3d_old
   VERSION_JP_US  ?= true
 else ifeq ($(VERSION),eu)
+  BASE_VERSION ?= $(VERSION)
   DEFINES   += VERSION_EU=1
   OPT_FLAGS := -O2
   GRUCODE   ?= f3d_new
   VERSION_JP_US  ?= false
+else ifeq ($(VERSION),it)
+  BASE_VERSION ?= eu
+  DEFINES   += VERSION_EU=1
+  DEFINES   += VERSION_IT=1
+  OPT_FLAGS := -O2
+  GRUCODE   ?= f3d_new
+  VERSION_JP_US  ?= false
 else ifeq ($(VERSION),sh)
+  BASE_VERSION ?= $(VERSION)
   DEFINES   += VERSION_SH=1
   OPT_FLAGS := -O2
   GRUCODE   ?= f3d_new
@@ -146,6 +158,10 @@ COLOR ?= 1
 ifeq ($(filter clean distclean,$(MAKECMDGOALS)),)
   $(info ==== Build Options ====)
   $(info Version:        $(VERSION))
+  # display the base version only if it is a derived ROM: 'it'
+  ifneq ($(filter it,$(VERSION)),)
+    $(info Base Version:   $(BASE_VERSION))
+  endif
   $(info Microcode:      $(GRUCODE))
   $(info Target:         $(TARGET))
   ifeq ($(COMPARE),1)
@@ -179,7 +195,11 @@ ifeq ($(filter clean distclean print-%,$(MAKECMDGOALS)),)
   # Make sure assets exist
   NOEXTRACT ?= 0
   ifeq ($(NOEXTRACT),0)
-    DUMMY != $(PYTHON) extract_assets.py $(VERSION) >&2 || echo FAIL
+    DUMMY != $(PYTHON) extract_assets.py $(BASE_VERSION) >&2 || echo FAIL
+    # If this is an ultimate version: 'it' we also need the SH assets...
+    ifneq ($(filter it,$(VERSION)),)
+      DUMMY != $(PYTHON) extract_assets.py "sh" >&2 || echo FAIL
+    endif
     ifeq ($(DUMMY),FAIL)
       $(error Failed to extract assets)
     endif
@@ -215,7 +235,7 @@ LEVEL_DIRS     := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.h)))
 
 # Directories containing source files
 SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels bin data assets asm lib sound
-BIN_DIRS := bin bin/$(VERSION)
+BIN_DIRS := bin bin/$(BASE_VERSION)
 
 ULTRA_SRC_DIRS := lib/src lib/src/math lib/asm lib/data
 ULTRA_BIN_DIRS := lib/bin
@@ -240,7 +260,12 @@ SOUND_SAMPLE_DIRS   := $(wildcard sound/samples/*)
 SOUND_SAMPLE_AIFFS  := $(foreach dir,$(SOUND_SAMPLE_DIRS),$(wildcard $(dir)/*.aiff))
 SOUND_SAMPLE_TABLES := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:.aiff=.table))
 SOUND_SAMPLE_AIFCS  := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:.aiff=.aifc))
-SOUND_SEQUENCE_DIRS := sound/sequences sound/sequences/$(VERSION)
+ifneq ($(filter jp us eu sh it,$(VERSION)),)
+SOUND_SEQUENCE_DIRS := sound/sequences sound/sequences/$(BASE_VERSION)
+else
+# use sh version for ultimate editions
+SOUND_SEQUENCE_DIRS := sound/sequences sound/sequences/sh
+endif
 # all .m64 files in SOUND_SEQUENCE_DIRS, plus all .m64 files that are generated from .s files in SOUND_SEQUENCE_DIRS
 SOUND_SEQUENCE_FILES := \
   $(foreach dir,$(SOUND_SEQUENCE_DIRS),\
@@ -263,7 +288,7 @@ DEP_FILES := $(O_FILES:.o=.d) $(ULTRA_O_FILES:.o=.d) $(GODDARD_O_FILES:.o=.d) $(
 
 # Files with GLOBAL_ASM blocks
 ifeq ($(NON_MATCHING),0)
-  ifeq ($(VERSION),sh)
+  ifeq ($(BASE_VERSION),sh)
     GLOBAL_ASM_C_FILES != grep -rl 'GLOBAL_ASM(' $(wildcard src/**/*.c) $(wildcard lib/src/*.c)
   else
     GLOBAL_ASM_C_FILES != grep -rl 'GLOBAL_ASM(' $(wildcard src/**/*.c)
@@ -436,7 +461,7 @@ $(BUILD_DIR)/lib/rsp.o:               $(BUILD_DIR)/rsp/rspboot.bin $(BUILD_DIR)/
 $(SOUND_BIN_DIR)/sound_data.o:        $(SOUND_BIN_DIR)/sound_data.ctl.inc.c $(SOUND_BIN_DIR)/sound_data.tbl.inc.c $(SOUND_BIN_DIR)/sequences.bin.inc.c $(SOUND_BIN_DIR)/bank_sets.inc.c
 $(BUILD_DIR)/levels/scripts.o:        $(BUILD_DIR)/include/level_headers.h
 
-ifeq ($(VERSION),sh)
+ifeq ($(BASE_VERSION),sh)
   $(BUILD_DIR)/src/audio/load.o: $(SOUND_BIN_DIR)/bank_sets.inc.c $(SOUND_BIN_DIR)/sequences_header.inc.c $(SOUND_BIN_DIR)/ctl_header.inc.c $(SOUND_BIN_DIR)/tbl_header.inc.c
 endif
 
@@ -446,30 +471,39 @@ ifeq ($(COMPILER),gcc)
   $(BUILD_DIR)/lib/src/math/%.o: CFLAGS += -fno-builtin
 endif
 
-ifeq ($(VERSION),eu)
-  TEXT_DIRS := text/de text/us text/fr
-
-  # EU encoded text inserted into individual segment 0x19 files,
-  # and course data also duplicated in leveldata.c
-  $(BUILD_DIR)/bin/eu/translation_en.o: $(BUILD_DIR)/text/us/define_text.inc.c
-  $(BUILD_DIR)/bin/eu/translation_de.o: $(BUILD_DIR)/text/de/define_text.inc.c
-  $(BUILD_DIR)/bin/eu/translation_fr.o: $(BUILD_DIR)/text/fr/define_text.inc.c
+ifeq ($(BASE_VERSION),eu)
   $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/include/text_strings.h
-  $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/us/define_courses.inc.c
-  $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/de/define_courses.inc.c
-  $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/fr/define_courses.inc.c
+  ifeq ($(VERSION),it)
+    TEXT_DIRS := text/it
+    $(BUILD_DIR)/bin/it/translation_it.o: $(BUILD_DIR)/text/it/define_text.inc.c
+    $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/it/define_courses.inc.c
+  else
+    TEXT_DIRS := text/de text/us text/fr
+    # EU encoded text inserted into individual segment 0x19 files,
+    # and course data also duplicated in leveldata.c
+    $(BUILD_DIR)/bin/eu/translation_en.o: $(BUILD_DIR)/text/us/define_text.inc.c
+    $(BUILD_DIR)/bin/eu/translation_de.o: $(BUILD_DIR)/text/de/define_text.inc.c
+    $(BUILD_DIR)/bin/eu/translation_fr.o: $(BUILD_DIR)/text/fr/define_text.inc.c
+    $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/us/define_courses.inc.c
+    $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/de/define_courses.inc.c
+    $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/fr/define_courses.inc.c
+  endif
 else
-  ifeq ($(VERSION),sh)
+  ifeq ($(BASE_VERSION),sh)
     TEXT_DIRS := text/jp
     $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/jp/define_text.inc.c
   else
-    TEXT_DIRS := text/$(VERSION)
+    TEXT_DIRS := text/$(BASE_VERSION)
     # non-EU encoded text inserted into segment 0x02
-    $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/$(VERSION)/define_text.inc.c
+    $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/$(BASE_VERSION)/define_text.inc.c
   endif
 endif
 
-ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(TEXT_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) rsp include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(VERSION)
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(TEXT_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) rsp include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(BASE_VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(BASE_VERSION)
+# If this is an ultimate version: 'it' we also need the SH assets...
+ifneq ($(filter it,$(VERSION)),)
+ALL_DIRS += $(SOUND_BIN_DIR)/sequences/sh $(addprefix $(MIO0_DIR)/,$(VERSION))
+endif
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
@@ -668,7 +702,7 @@ ifeq ($(COMPILER),ido)
   $(BUILD_DIR)/lib/src/gu%.o:        OPT_FLAGS := -O3
   $(BUILD_DIR)/lib/src/al%.o:        OPT_FLAGS := -O3
   # For the asm-processor, since it doesn't support -O3. Probably not actually compiled with these flags.
-  ifeq ($(VERSION),sh)
+  ifeq ($(BASE_VERSION),sh)
     $(BUILD_DIR)/lib/src/unk_shindou_file.o: OPT_FLAGS := -O1
     $(BUILD_DIR)/lib/src/func_sh_80304D20.o: OPT_FLAGS := -O1
     $(BUILD_DIR)/lib/src/_Printf.o: OPT_FLAGS := -O3
@@ -681,7 +715,7 @@ ifeq ($(COMPILER),ido)
     $(BUILD_DIR)/lib/src/_Ldtob.o: OPT_FLAGS := -O3
     $(BUILD_DIR)/lib/src/osDriveRomInit.o: OPT_FLAGS := -g
   endif
-  ifeq ($(VERSION),eu)
+  ifeq ($(BASE_VERSION),eu)
     $(BUILD_DIR)/lib/src/_Litob.o:   OPT_FLAGS := -O3
     $(BUILD_DIR)/lib/src/_Ldtob.o:   OPT_FLAGS := -O3
     $(BUILD_DIR)/lib/src/_Printf.o:  OPT_FLAGS := -O3

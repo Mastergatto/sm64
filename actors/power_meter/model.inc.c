@@ -4,12 +4,20 @@ UNUSED static const u64 power_meter_unused_1 = 0;
 
 // 0x030233E0
 ALIGNED8 static const Texture texture_power_meter_left_side[] = {
+#ifdef VERSION_IT
+#include "actors/power_meter/power_meter_left_side.it.rgba16.inc.c"
+#else
 #include "actors/power_meter/power_meter_left_side.rgba16.inc.c"
+#endif
 };
 
 // 0x030243E0
 ALIGNED8 static const Texture texture_power_meter_right_side[] = {
+#ifdef VERSION_IT
+#include "actors/power_meter/power_meter_right_side.it.rgba16.inc.c"
+#else
 #include "actors/power_meter/power_meter_right_side.rgba16.inc.c"
+#endif
 };
 
 // 0x030253E0

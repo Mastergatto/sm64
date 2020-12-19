@@ -1,3 +1,5 @@
+#include "config.h"
+
 // 0x0C000104
 const GeoLayout penguin_geo[] = {
 #if defined(VERSION_EU) || defined(VERSION_SH)

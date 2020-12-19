@@ -21,4 +21,8 @@ extern void *dialog_table_eu_de[];
 extern void *course_name_table_eu_de[];
 extern void *act_name_table_eu_de[];
 
+extern void *dialog_table_it[];
+extern void *course_name_table_it[];
+extern void *act_name_table_it[];
+
 #endif // EU_TRANSLATION_H

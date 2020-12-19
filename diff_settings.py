@@ -10,11 +10,18 @@ def add_custom_arguments(parser):
             help="Set version to EU.")
     group.add_argument('-s', dest='lang', action='store_const', const='sh',
             help="Set version to SH.")
+    group.add_argument('--i', dest='lang', action='store_const', const='it',
+            help="Set version to IT.")
 
 def apply(config, args):
     lang = args.lang or 'us'
     config['mapfile'] = f'build/{lang}/sm64.{lang}.map'
     config['myimg'] = f'build/{lang}/sm64.{lang}.z64'
-    config['baseimg'] = f'baserom.{lang}.z64'
+
+    if len(lang) == 2:
+         config['baseimg'] = f'baserom.{lang}.z64'
+    else:
+        config['baseimg'] = f'baserom.{lang[:-1]}.z64'
+
     config['makeflags'] = [f'VERSION={lang}']
     config['source_directories'] = ['src', 'include', 'lib', 'lib/src', 'asm', 'rsp']

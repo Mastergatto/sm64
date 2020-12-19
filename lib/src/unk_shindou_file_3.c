@@ -1,7 +1,8 @@
 #include "libultra_internal.h"
 #include "controller.h"
+#include "config.h"
 
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
 s32 func_8030A5C0(OSMesgQueue *arg0, s32 arg1) { // TODO: This is almost certainly __osPfsGetStatus.
     s32 sp34 = 0;
     OSMesg sp30;

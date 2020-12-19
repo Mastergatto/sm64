@@ -8,6 +8,7 @@
 #include "synthesis.h"
 #include "effects.h"
 #include "external.h"
+#include "config.h"
 
 void note_set_resampling_rate(struct Note *note, f32 resamplingRateInput);
 

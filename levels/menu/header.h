@@ -44,6 +44,9 @@ extern const u8 eu_course_strings_en_table[];
 extern const u8 eu_course_strings_fr_table[];
 extern const u8 eu_course_strings_de_table[];
 #endif
+#ifdef VERSION_IT
+extern const u8 it_course_strings_table[];
+#endif
 
 // script
 extern const LevelScript level_main_menu_entry_1[];

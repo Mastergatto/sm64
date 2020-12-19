@@ -1,8 +1,9 @@
 #include "libultra_internal.h"
 #include "PR/rcp.h"
 #include "controller.h"
+#include "config.h"
 
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
 extern s32 func_8030A5C0(OSMesgQueue *, s32);
 void __osPackRamWriteData(int channel, u16 address, u8 *buffer);
 

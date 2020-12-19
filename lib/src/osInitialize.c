@@ -1,6 +1,7 @@
 #include "libultra_internal.h"
 #include "hardware.h"
 #include <macros.h>
+#include "config.h"
 
 #define PIF_ADDR_START (void *) 0x1FC007FC
 

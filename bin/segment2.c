@@ -1413,17 +1413,19 @@ ALIGNED8 static const Texture texture_font_char_eu_eszeet[] = {
 #include "textures/segment2/font_graphics.06530.ia1.inc.c"
 };
 
-ALIGNED8 static const u8 texture_font_char_eu_upperigrave[] = {
+#ifdef VERSION_IT
+ALIGNED8 static const u8 texture_font_char_it_upperigrave[] = {
 #include "textures/segment2/font_graphics.06540.ia1.inc.c"
 };
 
-ALIGNED8 static const u8 texture_font_char_eu_lowerigrave[] = {
+ALIGNED8 static const u8 texture_font_char_it_lowerigrave[] = {
 #include "textures/segment2/font_graphics.06550.ia1.inc.c"
 };
 
-ALIGNED8 static const u8 texture_font_char_eu_upperograve[] = {
+ALIGNED8 static const u8 texture_font_char_it_upperograve[] = {
 #include "textures/segment2/font_graphics.06560.ia1.inc.c"
 };
+#endif
 
 // US Small Font
 #else
@@ -1917,7 +1919,11 @@ const Texture *const main_font_lut[] = {
     //AX
     texture_font_char_EU_slash, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
     //BX
-    0x0, 0x0, texture_font_char_eu_upperograve, texture_font_char_eu_upperigrave, texture_font_char_eu_lowerigrave, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 
+#ifdef VERSION_IT
+    0x0, 0x0, texture_font_char_it_upperograve, texture_font_char_it_upperigrave, texture_font_char_it_lowerigrave, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 
+#else
+    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+#endif
     //CX
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
     //DX

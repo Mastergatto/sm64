@@ -12,6 +12,8 @@
  * is not used anywhere else.
  */
 
+#include "sm64.h"
+
 void bhv_unused_poundable_platform(void) {
     cur_obj_scale(1.02f);
 
@@ -19,6 +21,9 @@ void bhv_unused_poundable_platform(void) {
         if (cur_obj_is_mario_ground_pounding_platform()) {
             spawn_mist_particles();
             spawn_triangle_break_particles(20, 56, 3.0f, 0);
+#if RESURRECT_CRACKED_ICE
+            create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
+#endif
             o->oAction++;
         }
     } else if (o->oTimer > 7) {

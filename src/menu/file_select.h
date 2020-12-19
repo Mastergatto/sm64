@@ -78,7 +78,7 @@ enum MenuButtonTypes {
     MENU_BUTTON_MONO,
     MENU_BUTTON_HEADSET,
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     // Language Menu
     MENU_BUTTON_LANGUAGE_MIN,
     MENU_BUTTON_LANGUAGE_ENGLISH = MENU_BUTTON_LANGUAGE_MIN,

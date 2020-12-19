@@ -667,8 +667,12 @@ BAD_RETURN(f32) calc_y_to_curr_floor(f32 *posOff, f32 posMul, f32 posBound, f32 
     UNUSED s32 filler;
 
     if (!(sMarioCamState->action & ACT_FLAG_METAL_WATER)) {
+#if BUGFIX_CAMERA_WATER_HEIGHT
+        if (floorHeight < (waterHeight = sMarioGeometry.waterHeight)) {
+#else
         //! @bug this should use sMarioGeometry.waterHeight
         if (floorHeight < (waterHeight = find_water_level(sMarioCamState->pos[0], sMarioCamState->pos[2]))) {
+#endif
             floorHeight = waterHeight;
         }
     }
@@ -1604,6 +1608,9 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         switch (gCurrLevelArea) {
             case AREA_BOB:
                 pos[1] += 125.f;
+#if BUGFIX_CAMERA_BOSS_FIGHT_HEIGHT
+                break;
+#endif
                 //! fall through, makes the BoB boss fight camera move up twice as high as it should
             case AREA_WF:
                 pos[1] += 125.f;

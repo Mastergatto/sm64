@@ -6,6 +6,8 @@
  * the environment.
  */
 
+#include "config.h"
+
 void bhv_purple_switch_loop(void) {
     UNUSED s32 unused;
     switch (o->oAction) {
@@ -32,7 +34,7 @@ void bhv_purple_switch_loop(void) {
                 cur_obj_play_sound_2(SOUND_GENERAL2_PURPLE_SWITCH);
                 o->oAction = PURPLE_SWITCH_TICKING;
                 cur_obj_shake_screen(SHAKE_POS_SMALL);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
             }

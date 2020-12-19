@@ -1,11 +1,12 @@
 #include <ultra64.h>
 #include "macros.h"
 
+#include "config.h"
 #include "buffers/buffers.h"
 #include "main.h"
 #include "rumble_init.h"
 
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
 
 OSThread gRumblePakThread;
 

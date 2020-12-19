@@ -4,6 +4,7 @@
 #include <ultra64.h>
 
 #include "types.h"
+#include "config.h"
 
 #if defined(VERSION_EU) || defined(VERSION_SH)
 #define SEQUENCE_PLAYERS 4

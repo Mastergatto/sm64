@@ -90,6 +90,9 @@ DECLARE_SEGMENT(translation_en_mio0)
 DECLARE_SEGMENT(translation_fr_mio0)
 #endif
 
+#ifdef VERSION_IT
+DECLARE_SEGMENT(translation_it_mio0)
 #endif
 
+#endif
 #endif // SEGMENT_SYMBOLS_H

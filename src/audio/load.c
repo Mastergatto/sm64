@@ -5,6 +5,7 @@
 #include "heap.h"
 #include "load.h"
 #include "seqplayer.h"
+#include "sm64.h"
 
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
@@ -1530,8 +1531,12 @@ void preload_sequence(u32 seqId, u8 preloadMask) {
     }
 
     if (preloadMask & PRELOAD_SEQUENCE) {
+#if BUGFIX_AUDIO_LOAD_BANK_NOT_SEQUENCE
+        if (IS_SEQ_LOAD_COMPLETE(seqId) == TRUE) {
+#else
         // @bug should be IS_SEQ_LOAD_COMPLETE
         if (IS_BANK_LOAD_COMPLETE(seqId) == TRUE) {
+#endif
             eu_stubbed_printf_1("SEQ  %d ALREADY CACHED\n", seqId);
             sequenceData = get_bank_or_seq(&gSeqLoadedPool, 2, seqId);
         } else {

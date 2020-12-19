@@ -1,3 +1,5 @@
+#include "config.h"
+
 /**
  * @file intro_lakitu.inc.c
  * This file implements lakitu's behvaior during the intro cutscene.

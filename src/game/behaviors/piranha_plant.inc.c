@@ -1,3 +1,5 @@
+#include "config.h"
+
 /**
  * Behavior for bhvPiranhaPlant.
  * This controls Piranha Plants, which alternate between sleeping, attacking,

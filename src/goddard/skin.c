@@ -1,4 +1,5 @@
 #include <PR/ultratypes.h>
+#include "config.h"
 
 #if defined(VERSION_EU) || defined(VERSION_SH)
 #include "prevent_bss_reordering.h"

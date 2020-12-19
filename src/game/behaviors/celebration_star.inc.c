@@ -1,3 +1,5 @@
+#include "config.h"
+
 // celebration_star.c.inc
 
 void bhv_celebration_star_init(void) {

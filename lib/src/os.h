@@ -37,6 +37,7 @@ extern "C" {
 
 #include <PR/ultratypes.h>
 #include "PR/os_message.h"
+#include "config.h"
 
 #if defined(_LANGUAGE_C) || defined(_LANGUAGE_C_PLUS_PLUS)
 

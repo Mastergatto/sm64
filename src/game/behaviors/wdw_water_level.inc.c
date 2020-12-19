@@ -1,5 +1,7 @@
 // wdw_water_level.c.inc
 
+#include "config.h"
+
 // called when WDW is loaded.
 void bhv_init_changing_water_level_loop(void) {
     if (gCurrentObject->oAction == 0) {
@@ -49,7 +51,7 @@ void bhv_water_level_diamond_loop(void) {
                             cur_obj_play_sound_1(SOUND_ENV_WATER_DRAIN); // same as above
                     }
                     o->oAngleVelYaw = 0x800;
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                     reset_rumble_timers_2(2);
 #endif
                 }

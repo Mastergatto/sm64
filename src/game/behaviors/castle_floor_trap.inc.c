@@ -1,5 +1,8 @@
 // castle_floor_trap.c.inc
 
+#include "sm64.h"
+
+
 void bhv_floor_trap_in_castle_loop(void) {
     if (gMarioObject->platform == o)
         o->parentObj->oInteractStatus |= INT_STATUS_TRAP_TURN;
@@ -26,7 +29,11 @@ void bhv_castle_floor_trap_open_detect(void) {
 
 void bhv_castle_floor_trap_open(void) {
     if (o->oTimer == 0)
+#if BUGFIX_CASTLE_TRAP_OPEN_SOUND
+        play_sound(SOUND_GENERAL_CASTLE_TRAP_OPEN, gGlobalSoundSource);
+#else
         cur_obj_play_sound_2(SOUND_GENERAL_CASTLE_TRAP_OPEN);
+#endif
     o->oAngleVelRoll -= 0x100;
     o->oFaceAngleRoll += o->oAngleVelRoll;
     if (o->oFaceAngleRoll < -0x4000) {

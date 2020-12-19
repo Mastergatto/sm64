@@ -1,6 +1,8 @@
 #ifndef OBJECT_CONSTANTS_H
 #define OBJECT_CONSTANTS_H
 
+#include "sm64.h"
+
 // This file contains macros that provide descriptive names for
 // field-specific and object-specific constants, e.g. actions.
 
@@ -895,6 +897,9 @@
     #define KLEPTO_ANIM_STATE_HOLDING_NOTHING 0
     #define KLEPTO_ANIM_STATE_HOLDING_CAP 1
     #define KLEPTO_ANIM_STATE_HOLDING_STAR 2
+#if RESURRECT_KLEPTO_STAR_ANIMATION
+	#define KLEPTO_ANIM_STATE_HOLDING_BLUE_STAR 3
+#endif
 
 /* Bird */
     /* oAction */

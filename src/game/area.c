@@ -79,9 +79,9 @@ Vp D_8032CF00 = { {
     { 640, 480, 511, 0 },
 } };
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
 const char *gNoControllerMsg[] = {
-    "CONTROLLER ASSENTE",
+    "NO CONTROLLER",
     "MANETTE DEBRANCHEE",
     "CONTROLLER FEHLT",
 };
@@ -105,18 +105,22 @@ void set_warp_transition_rgb(u8 red, u8 green, u8 blue) {
 }
 
 void print_intro_text(void) {
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     s32 language = eu_get_language();
 #endif
     if ((gGlobalTimer & 0x1F) < 20) {
         if (gControllerBits == 0) {
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
             print_text_centered(SCREEN_WIDTH / 2, 20, gNoControllerMsg[language]);
+#elif defined(VERSION_IT)
+            print_text_centered(SCREEN_WIDTH / 2, 20, "CONTROLLER ASSENTE");
 #else
             print_text_centered(SCREEN_WIDTH / 2, 20, "NO CONTROLLER");
 #endif
         } else {
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
+            print_text(20, 20, "START");
+#elif defined(VERSION_IT)
             print_text(20, 38, "PREMI");
             print_text(20, 20, "START");
 #else

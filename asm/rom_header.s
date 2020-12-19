@@ -34,11 +34,13 @@
     .ascii "E"                  /* NTSC-U (North America) */
 .elseif (VERSION_JP == 1 || VERSION_SH == 1)
     .ascii "J"                  /* NTSC-J (Japan) */
-.else
+.elseif (VERSION_IT == 1)
     .ascii "I"                  /* PAL (Italy) */
+.else
+    .ascii "P"                  /* PAL (Europe) */
 .endif
 
-.if VERSION_SH == 1
+.if (VERSION_SH == 1 || VERSION_IT == 1)
     .byte  0x03                 /* Version (Shindou) */
 .else
     .byte  0x00                 /* Version */

@@ -121,7 +121,7 @@ static s8 sSelectedFileNum = 0;
 static s8 sScoreFileCoinScoreMode = 0;
 
 // In EU, if no save file exists, open the language menu so the user can find it.
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
 static s8 sOpenLangSettings = FALSE;
 #endif
 
@@ -188,7 +188,7 @@ static unsigned char textErase[] = { TEXT_ERASE };
 static unsigned char textErase[][8] = {{ TEXT_ERASE }, { TEXT_ERASE_FR }, { TEXT_ERASE_DE }};
 #endif
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
 static unsigned char textOption[][9] = {{ TEXT_OPTION }, { TEXT_OPTION_FR }, { TEXT_OPTION_DE } };
 #endif
 
@@ -260,13 +260,23 @@ static unsigned char textMarioAJustErased[][20] = {
     { TEXT_FILE_MARIO_A_JUST_ERASED }, { TEXT_FILE_MARIO_A_JUST_ERASED_FR }, { TEXT_FILE_MARIO_A_JUST_ERASED_DE }
 };
 
-static unsigned char textSoundSelect[][14] = {
+#ifdef VERSION_EU
+#ifdef VERSION_IT
+#define lenTextSound 14
+#define lenTextLanguage 18
+#else
+#define lenTextSound 13
+#define lenTextLanguage 17
+#endif
+
+static unsigned char textSoundSelect[][lenTextSound] = {
     { TEXT_SOUND_SELECT }, { TEXT_SOUND_SELECT_FR }, { TEXT_SOUND_SELECT_DE }
 };
 
-static unsigned char textLanguageSelect[][18] = {
+static unsigned char textLanguageSelect[][lenTextLanguage] = {
     { TEXT_LANGUAGE_SELECT }, { TEXT_LANGUAGE_SELECT_FR }, { TEXT_LANGUAGE_SELECT_DE }
 };
+#endif
 
 static unsigned char textSoundModes[][10] = {
     { TEXT_STEREO }, { TEXT_MONO }, { TEXT_HEADSET },
@@ -280,7 +290,14 @@ static unsigned char textMario[] = { TEXT_MARIO };
 static unsigned char textHiScore[][15] = {{ TEXT_HI_SCORE }, { TEXT_HI_SCORE_FR }, { TEXT_HI_SCORE_DE }};
 static unsigned char textMyScore[][10] = {{ TEXT_MY_SCORE }, { TEXT_MY_SCORE_FR }, { TEXT_MY_SCORE_DE }};
 
-static unsigned char textNew[][6] = {{ TEXT_NEW }, { TEXT_NEW_FR }, { TEXT_NEW_DE }};
+#ifdef VERSION_EU
+#ifdef VERSION_IT
+#define lenTextNew 6
+#else
+#define lenTextNew 5
+#endif
+static unsigned char textNew[][lenTextNew] = {{ TEXT_NEW }, { TEXT_NEW_FR }, { TEXT_NEW_DE }};
+#endif
 static unsigned char starIcon[] = { GLYPH_STAR, GLYPH_SPACE };
 static unsigned char xIcon[] = { GLYPH_MULTIPLY, GLYPH_SPACE };
 #endif
@@ -548,7 +565,7 @@ void exit_score_file_to_score_menu(struct Object *scoreFileButton, s8 scoreButto
     if (scoreFileButton->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN
         && sCursorClickingTimer == 2) {
         play_sound(SOUND_MENU_CAMERA_ZOOM_OUT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
         queue_rumble_data(5, 80);
 #endif
         scoreFileButton->oMenuButtonState = MENU_BUTTON_STATE_SHRINKING;
@@ -643,7 +660,7 @@ void check_score_menu_clicked_buttons(struct Object *scoreButton) {
                 if (buttonID == MENU_BUTTON_SCORE_RETURN || buttonID == MENU_BUTTON_SCORE_COPY_FILE
                     || buttonID == MENU_BUTTON_SCORE_ERASE_FILE) {
                     play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                     queue_rumble_data(5, 80);
 #endif
                     sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
@@ -654,7 +671,7 @@ void check_score_menu_clicked_buttons(struct Object *scoreButton) {
                         // If clicked in a existing save file, select it too see it's score
                         if (save_file_exists(buttonID - MENU_BUTTON_SCORE_MIN) == TRUE) {
                             play_sound(SOUND_MENU_CAMERA_ZOOM_IN, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                             queue_rumble_data(5, 80);
 #endif
                             sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
@@ -663,7 +680,7 @@ void check_score_menu_clicked_buttons(struct Object *scoreButton) {
                         else {
                             // If clicked in a non-existing save file, play buzz sound
                             play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                             queue_rumble_data(5, 80);
 #endif
                             sMainMenuButtons[buttonID]->oMenuButtonState =
@@ -759,7 +776,7 @@ void copy_action_file_button(struct Object *copyButton, s32 copyFileButtonID) {
             if (save_file_exists(copyFileButtonID - MENU_BUTTON_COPY_MIN) == TRUE) {
                 // If clicked in a existing save file, ask where it wants to copy
                 play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 sMainMenuButtons[copyFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN;
@@ -770,7 +787,7 @@ void copy_action_file_button(struct Object *copyButton, s32 copyFileButtonID) {
             } else {
                 // If clicked in a non-existing save file, play buzz sound
                 play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 sMainMenuButtons[copyFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
@@ -785,7 +802,7 @@ void copy_action_file_button(struct Object *copyButton, s32 copyFileButtonID) {
             if (save_file_exists(copyFileButtonID - MENU_BUTTON_COPY_MIN) == FALSE) {
                 // If clicked in a non-existing save file, copy the file
                 play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 copyButton->oMenuButtonActionPhase = COPY_PHASE_COPY_COMPLETE;
@@ -800,7 +817,7 @@ void copy_action_file_button(struct Object *copyButton, s32 copyFileButtonID) {
                 // If clicked in a existing save file, play buzz sound
                 if (MENU_BUTTON_COPY_FILE_A + sSelectedFileIndex == copyFileButtonID) {
                     play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                     queue_rumble_data(5, 80);
 #endif
                     sMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFileIndex]->oMenuButtonState =
@@ -843,7 +860,7 @@ void check_copy_menu_clicked_buttons(struct Object *copyButton) {
                     || buttonID == MENU_BUTTON_COPY_ERASE_FILE) {
                     if (copyButton->oMenuButtonActionPhase == COPY_PHASE_MAIN) {
                         play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                         queue_rumble_data(5, 80);
 #endif
                         sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
@@ -941,7 +958,7 @@ void erase_action_file_button(struct Object *eraseButton, s32 eraseFileButtonID)
             if (save_file_exists(eraseFileButtonID - MENU_BUTTON_ERASE_MIN) == TRUE) {
                 // If clicked in a existing save file, ask if it wants to delete it
                 play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 sMainMenuButtons[eraseFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN;
@@ -952,7 +969,7 @@ void erase_action_file_button(struct Object *eraseButton, s32 eraseFileButtonID)
             } else {
                 // If clicked in a non-existing save file, play buzz sound
                 play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 sMainMenuButtons[eraseFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
@@ -969,7 +986,7 @@ void erase_action_file_button(struct Object *eraseButton, s32 eraseFileButtonID)
                 // Note: The prompt functions are actually called when the ERASE_MSG_PROMPT
                 // message is displayed with print_erase_menu_prompt
                 play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 sMainMenuButtons[MENU_BUTTON_ERASE_MIN + sSelectedFileIndex]->oMenuButtonState =
@@ -999,7 +1016,7 @@ void check_erase_menu_clicked_buttons(struct Object *eraseButton) {
                     || buttonID == MENU_BUTTON_ERASE_COPY_FILE) {
                     if (eraseButton->oMenuButtonActionPhase == ERASE_PHASE_MAIN) {
                         play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                         queue_rumble_data(5, 80);
 #endif
                         sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
@@ -1028,7 +1045,7 @@ void check_erase_menu_clicked_buttons(struct Object *eraseButton) {
 #undef ACTION_TIMER
 #undef MAIN_RETURN_TIMER
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     #define SOUND_BUTTON_Y 388
 #else
     #define SOUND_BUTTON_Y 0
@@ -1051,7 +1068,7 @@ void render_sound_mode_menu_buttons(struct Object *soundModeButton) {
         soundModeButton, MODEL_MAIN_MENU_GENERIC_BUTTON, bhvMenuButton, -533, SOUND_BUTTON_Y, -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_HEADSET]->oMenuButtonScale = 0.11111111f;
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     // English option button
     sMainMenuButtons[MENU_BUTTON_LANGUAGE_ENGLISH] = spawn_object_rel_with_rot(
         soundModeButton, MODEL_MAIN_MENU_GENERIC_BUTTON, bhvMenuButton, 533, -111, -100, 0, -0x8000, 0);
@@ -1094,11 +1111,11 @@ void check_sound_mode_menu_clicked_buttons(struct Object *soundModeButton) {
                     || buttonID == MENU_BUTTON_HEADSET) {
                     if (soundModeButton->oMenuButtonActionPhase == SOUND_MODE_PHASE_MAIN) {
                         play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                         queue_rumble_data(5, 80);
 #endif
                         sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
-#ifndef VERSION_EU
+#if !defined(VERSION_EU) || defined(VERSION_IT)
                         // Sound menu buttons don't return to Main Menu in EU
                         // because they don't have a case in bhv_menu_button_manager_loop
                         sSelectedButtonID = buttonID;
@@ -1107,7 +1124,7 @@ void check_sound_mode_menu_clicked_buttons(struct Object *soundModeButton) {
                         save_file_set_sound_mode(sSoundMode);
                     }
                 }
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
                 // If language mode button clicked, select it and change language
                 if (buttonID == MENU_BUTTON_LANGUAGE_ENGLISH || buttonID == MENU_BUTTON_LANGUAGE_FRENCH
                          || buttonID == MENU_BUTTON_LANGUAGE_GERMAN) {
@@ -1412,7 +1429,7 @@ void check_main_menu_clicked_buttons(void) {
                 }
             }
         }
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
         // Open Options Menu if sOpenLangSettings is TRUE (It's TRUE when there's no saves)
         if (sOpenLangSettings == TRUE) {
             sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
@@ -1425,28 +1442,28 @@ void check_main_menu_clicked_buttons(void) {
         switch (sSelectedButtonID) {
             case MENU_BUTTON_PLAY_FILE_A:
                 play_sound(SAVE_FILE_SOUND, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(60, 70);
                 func_sh_8024C89C(1);
 #endif
                 break;
             case MENU_BUTTON_PLAY_FILE_B:
                 play_sound(SAVE_FILE_SOUND, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(60, 70);
                 func_sh_8024C89C(1);
 #endif
                 break;
             case MENU_BUTTON_PLAY_FILE_C:
                 play_sound(SAVE_FILE_SOUND, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(60, 70);
                 func_sh_8024C89C(1);
 #endif
                 break;
             case MENU_BUTTON_PLAY_FILE_D:
                 play_sound(SAVE_FILE_SOUND, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(60, 70);
                 func_sh_8024C89C(1);
 #endif
@@ -1454,28 +1471,28 @@ void check_main_menu_clicked_buttons(void) {
             // Play sound of the button clicked and render buttons of that menu.
             case MENU_BUTTON_SCORE:
                 play_sound(SOUND_MENU_CAMERA_ZOOM_IN, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 render_score_menu_buttons(sMainMenuButtons[MENU_BUTTON_SCORE]);
                 break;
             case MENU_BUTTON_COPY:
                 play_sound(SOUND_MENU_CAMERA_ZOOM_IN, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 render_copy_menu_buttons(sMainMenuButtons[MENU_BUTTON_COPY]);
                 break;
             case MENU_BUTTON_ERASE:
                 play_sound(SOUND_MENU_CAMERA_ZOOM_IN, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 render_erase_menu_buttons(sMainMenuButtons[MENU_BUTTON_ERASE]);
                 break;
             case MENU_BUTTON_SOUND_MODE:
                 play_sound(SOUND_MENU_CAMERA_ZOOM_IN, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(5, 80);
 #endif
                 render_sound_mode_menu_buttons(sMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
@@ -1590,7 +1607,7 @@ void bhv_menu_button_manager_loop(void) {
 
         // STEREO, MONO and HEADSET buttons are undefined so they can be selected without
         // exiting the Options menu, as a result they added a return button
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
         case MENU_BUTTON_LANGUAGE_RETURN:
             return_to_main_menu(MENU_BUTTON_SOUND_MODE, sMainMenuButtons[MENU_BUTTON_LANGUAGE_RETURN]);
             break;
@@ -1880,8 +1897,13 @@ void print_main_lang_strings(void) {
     print_generic_string(centeredX, 39, textCopy[sLanguageMode]);
     centeredX = get_str_x_pos_from_center(189, textErase[sLanguageMode], 10.0f);
     print_generic_string(centeredX, 39, textErase[sLanguageMode]);
+#ifdef VERSION_IT
+    centeredX = get_str_x_pos_from_center(245, textSoundModes[sSoundMode], 10.0f);
+    print_generic_string(centeredX, 39, textSoundModes[sSoundMode]);
+#else
     centeredX = get_str_x_pos_from_center(245, textOption[sLanguageMode], 10.0f);
     print_generic_string(centeredX, 39, textOption[sLanguageMode]);
+#endif
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 
     print_main_menu_strings();
@@ -2248,7 +2270,7 @@ void print_erase_menu_prompt(s16 x, s16 y) {
         // ..and is hovering "YES", delete file
         if (sEraseYesNoHoverState == MENU_ERASE_HOVER_YES) {
             play_sound(SOUND_MARIO_WAAAOOOW, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
             queue_rumble_data(5, 80);
 #endif
             sMainMenuButtons[MENU_BUTTON_ERASE]->oMenuButtonActionPhase = ERASE_PHASE_MARIO_ERASED;
@@ -2263,7 +2285,7 @@ void print_erase_menu_prompt(s16 x, s16 y) {
             // ..and is hovering "NO", return back to main phase
         } else if (sEraseYesNoHoverState == MENU_ERASE_HOVER_NO) {
             play_sound(SOUND_MENU_CLICK_FILE_SELECT, gGlobalSoundSource);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
             queue_rumble_data(5, 80);
 #endif
             sMainMenuButtons[MENU_BUTTON_ERASE_MIN + sSelectedFileIndex]->oMenuButtonState =
@@ -2470,8 +2492,10 @@ void print_erase_menu_strings(void) {
 
 #if defined(VERSION_JP) || defined(VERSION_SH)
     #define SOUND_HUD_X 96
-#elif defined(VERSION_US)
+#elif defined(VERSION_US) || defined(VERSION_IT)
     #define SOUND_HUD_X 88
+#elif defined(VERSION_EU)
+    #define SOUND_HUD_X 47
 #endif
 
 /**
@@ -2497,8 +2521,10 @@ void print_sound_mode_menu_strings(void) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 
 #ifdef VERSION_EU
-    print_hud_lut_string(HUD_LUT_DIFF, 47, 32, textSoundSelect[sLanguageMode]);
-    print_hud_lut_string(HUD_LUT_DIFF, 47, 101, textLanguageSelect[sLanguageMode]);
+    print_hud_lut_string(HUD_LUT_DIFF, SOUND_HUD_X, 32, textSoundSelect[sLanguageMode]);
+#ifndef VERSION_IT
+    print_hud_lut_string(HUD_LUT_DIFF, SOUND_HUD_X, 101, textLanguageSelect[sLanguageMode]);
+#endif
 #else
     print_hud_lut_string(HUD_LUT_DIFF, SOUND_HUD_X, 35, textSoundSelect);
 #endif
@@ -2508,6 +2534,13 @@ void print_sound_mode_menu_strings(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
 
 #ifdef VERSION_EU // In EU their X position get increased each string
+
+#ifdef VERSION_IT
+#define textY 87
+#else
+#define textY 141
+#endif
+
     // Print sound mode names
     for (mode = 0, textX = 90; mode < 3; textX += 70, mode++) {
         if (mode == sSoundMode) {
@@ -2517,9 +2550,10 @@ void print_sound_mode_menu_strings(void) {
         }
         print_generic_string(
             get_str_x_pos_from_center(textX, textSoundModes[sLanguageMode * 3 + mode], 10.0f),
-            141, textSoundModes[sLanguageMode * 3 + mode]);
+            textY, textSoundModes[sLanguageMode * 3 + mode]);
     }
 
+#ifndef VERSION_IT
     // In EU, print language mode names
     for (mode = 0, textX = 90; mode < 3; textX += 70, mode++) {
         if (mode == sLanguageMode) {
@@ -2531,6 +2565,8 @@ void print_sound_mode_menu_strings(void) {
             get_str_x_pos_from_center(textX, textLanguage[mode], 10.0f),
             72, textLanguage[mode]);
     }
+#endif
+
 #else
     // Print sound mode names
     for (mode = 0; mode < 3; mode++) {
@@ -2549,7 +2585,7 @@ void print_sound_mode_menu_strings(void) {
     }
 #endif
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     print_generic_string(182, 29, textReturn[sLanguageMode]);
 #endif
@@ -2699,6 +2735,9 @@ void print_save_file_scores(s8 fileIndex) {
     unsigned char textFileLetter[] = { TEXT_ZERO };
     void **levelNameTable;
 
+#ifdef VERSION_IT
+    levelNameTable = segmented_to_virtual(it_course_strings_table);
+#else
     switch (sLanguageMode) {
         case LANGUAGE_ENGLISH:
             levelNameTable = segmented_to_virtual(eu_course_strings_en_table);
@@ -2710,6 +2749,7 @@ void print_save_file_scores(s8 fileIndex) {
             levelNameTable = segmented_to_virtual(eu_course_strings_de_table);
             break;
     }
+#endif
 #endif
 
     textFileLetter[0] = fileIndex + ASCII_TO_DIALOG('A'); // get letter of file selected
@@ -2855,7 +2895,7 @@ Gfx *geo_file_select_strings_and_menu_cursor(s32 callContext, UNUSED struct Grap
  * either completing a course choosing "SAVE & QUIT" or having a game over.
  */
 s32 lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused) {
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     s8 fileNum;
 #endif
     sSelectedButtonID = MENU_BUTTON_NONE;
@@ -2893,7 +2933,7 @@ s32 lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused) {
     sMainMenuTimer = 0;
     sEraseYesNoHoverState = MENU_ERASE_HOVER_NONE;
     sSoundMode = save_file_get_sound_mode();
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     sLanguageMode = eu_get_language();
 
     for (fileNum = 0; fileNum < 4; fileNum++) {

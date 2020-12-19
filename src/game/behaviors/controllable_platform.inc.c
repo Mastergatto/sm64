@@ -1,3 +1,5 @@
+#include "config.h"
+
 // controllable_platform.c.inc
 
 static s8 D_80331694 = 0;
@@ -29,7 +31,7 @@ void bhv_controllable_platform_sub_loop(void) {
 
             if (gMarioObject->platform == o) {
                 D_80331694 = o->oBehParams2ndByte;
-#ifdef VERSION_SH
+#if BUGFIX_CONTROLLABLE_PLATFORM
                 o->parentObj->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
 #endif
                 o->oAction = 1;
@@ -79,7 +81,7 @@ void controllable_platform_hit_wall(s8 sp1B) {
     D_80331694 = 5;
 
     cur_obj_play_sound_2(SOUND_GENERAL_QUIET_POUND1);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
     queue_rumble_data(50, 80);
 #endif
 }

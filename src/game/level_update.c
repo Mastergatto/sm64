@@ -51,10 +51,12 @@
 #define WARP_NODE_CREDITS_MIN 0xF8
 
 // TODO: Make these ifdefs better
-const char *credits01[] = { "1REGISTA DEL GIOCO", "SHIGERU MIYAMOTO" };
-const char *credits02[] = { "2AIUTO REGISTI", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
-const char *credits03[] = { "2PROGRAMMATORI DI SISTEMA", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
-const char *credits04[] = { "3PROGRAMMATORI", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
+#ifndef VERSION_IT
+const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
+const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
+const char *credits03[] = { "2SYSTEM PROGRAMMERS", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
+const char *credits04[] = { "3PROGRAMMERS", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
+#endif
 #if defined(VERSION_JP) || defined(VERSION_SH)
 const char *credits05[] = { "1CAMERA PROGRAMMER", "TAKUMI KAWAGOE" };
 const char *credits06[] = { "1MARIO FACE PROGRAMMER", "GILES GODDARD" };
@@ -89,13 +91,13 @@ const char *credits18[] = { "3SPECIAL THANKS TO", "JYOHO KAIHATUBU", "ALL NINTEN
 const char *credits19[] = { "1PRODUCER", "SHIGERU MIYAMOTO" };
 const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
 #endif
-#else // VERSION_US || VERSION_EU
+#elif !defined(VERSION_IT) // VERSION_US || VERSION_EU
 const char *credits05[] = {
-    "4PROGRAMMATORE TELECAMERA", "PROGRAMMATORE TESTA MARIO", "TAKUMI KAWAGOE", "GILES GODDARD"
+    "4CAMERA PROGRAMMER", "MARIO FACE PROGRAMMER", "TAKUMI KAWAGOE", "GILES GODDARD"
 }; // US combines camera programmer and Mario face programmer
-const char *credits06[] = { "2DIRETTORI AMBIENTI", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
-const char *credits07[] = { "2PROGETTISTI AMBIENTI", "KENTA USUI", "NAOKI MORI" };
-const char *credits08[] = { "3PROGETTISTI AMBIENTI", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA",
+const char *credits06[] = { "2COURSE DIRECTORS", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
+const char *credits07[] = { "2COURSE DESIGNERS", "KENTA USUI", "NAOKI MORI" };
+const char *credits08[] = { "3COURSE DESIGNERS", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA",
                             "KATSUHIKO KANNO" };
 #ifdef VERSION_US
 const char *credits09[] = { "1SOUND COMPOSER", "KOJI KONDO" };
@@ -108,28 +110,54 @@ const char *credits14[] = { "1TECHNICAL SUPPORT", "SGI N64 PROJECT STAFF" };
 const char *credits15[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
 const char *credits16[] = { "5SCREEN TEXT WRITER", "TRANSLATION", "LESLIE SWAN", "MINA AKINO",
                             "HIRO YAMADA" }; // ...in order to make room for these 2 new lines
-#else // VERSION_EU
-const char *credits09[] = { "7COMPOSITORE", "EFFETTI SONORI", "PROGRAMMATORE SUONI", "KOJI KONDO",
+#elif !defined(VERSION_IT) // VERSION_EU
+const char *credits09[] = { "7SOUND COMPOSER", "SOUND EFFECTS", "SOUND PROGRAMMER", "KOJI KONDO",
                             "YOJI INAGAKI", "HIDEAKI SHIMIZU" };
-const char *credits10[] = { "6ANIMATORI 3-D", "PROGETTISTA GRAFICO", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA",
+const char *credits10[] = { "63-D ANIMATORS", "ADDITIONAL GRAPHICS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA",
                             "MASANAO ARIMOTO" };
-const char *credits11[] = { "3SUPPORTO TECNICO", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
-const char *credits12[] = { "1SUPPORTO TECNICO", "SGI N64 PROJECT STAFF" };
-const char *credits13[] = { "2GESTIONE DEI PROCESSI", "KIMIYOSHI FUKUI", "KEIZO KATO" };
-const char *credits14[] = { "5SCENEGGIATORE", "TRADUZIONE INGLESE", "LESLIE SWAN", "MINA AKINO",
+const char *credits11[] = { "3TECHNICAL SUPPORT", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
+const char *credits12[] = { "1TECHNICAL SUPPORT", "SGI N64 PROJECT STAFF" };
+const char *credits13[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
+const char *credits14[] = { "5SCREEN TEXT WRITER", "ENGLISH TRANSLATION", "LESLIE SWAN", "MINA AKINO",
                             "HIRO YAMADA" };
-const char *credits15[] = { "4SCENEGGIATORE", "TRADUZIONE FRANCESE", "JULIEN BARDAKOFF",
+const char *credits15[] = { "4SCREEN TEXT WRITER", "FRENCH TRANSLATION", "JULIEN BARDAKOFF",
                             "KENJI HARAGUCHI" };
-const char *credits16[] = { "4SCENEGGIATORE", "TRADUZIONE TEDESCA", "THOMAS GOERG",
+const char *credits16[] = { "4SCREEN TEXT WRITER", "GERMAN TRANSLATION", "THOMAS GOERG",
                             "THOMAS SPINDLER" };
 #endif
-const char *credits17[] = { "4VOCE DI MARIO", "VOCE DI PEACH", "CHARLES MARTINET", "LESLIE SWAN" };
-const char *credits18[] = { "3SPECIALI RINGRAZIAMENTI VANNO A", "PERSONALE DI EAD", "TUTTI I DIPENDENTI NINTENDO",
+#ifndef VERSION_IT
+const char *credits17[] = { "4MARIO VOICE", "PEACH VOICE", "CHARLES MARTINET", "LESLIE SWAN" };
+const char *credits18[] = { "3SPECIAL THANKS TO", "EAD STAFF", "ALL NINTENDO PERSONNEL",
+#endif
 #ifdef VERSION_US
                            "MARIO CLUB STAFF" };
 #else // VERSION_EU
-                           "PERSONALE DI SUPER MARIO CLUB" };
+                           "SUPER MARIO CLUB STAFF" };
 #endif
+const char *credits19[] = { "1PRODUCER", "SHIGERU MIYAMOTO" };
+const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
+#endif
+#ifdef VERSION_IT
+const char *credits01[] = { "1REGISTA DEL GIOCO", "SHIGERU MIYAMOTO" };
+const char *credits02[] = { "2AIUTO REGISTI", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
+const char *credits03[] = { "2PROGRAMMATORI DI SISTEMA", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
+const char *credits04[] = { "3PROGRAMMATORI", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
+const char *credits05[] = { "1PROGRAMMATORE TELECAMERA", "TAKUMI KAWAGOE" };
+const char *credits06[] = { "1PROGRAMMATORE TESTA MARIO", "GILES GODDARD" };
+const char *credits07[] = { "2DIRETTORI AMBIENTI", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
+const char *credits08[] = { "2PROGETTISTI AMBIENTI", "KENTA USUI", "NAOKI MORI" };
+const char *credits09[] = { "3PROGETTISTI AMBIENTI", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA",
+                            "KATSUHIKO KANNO" };
+const char *credits10[] = { "1COMPOSITORE", "KOJI KONDO"};                    
+const char *credits11[] = { "4EFFETTI SONORI", "PROGRAMMATORE SUONI", "YOJI INAGAKI", "HIDEAKI SHIMIZU" };
+const char *credits12[] = { "2ANIMATORI 3D", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA" };
+const char *credits13[] = { "1ARTISTA CG", "MASANAO ARIMOTO" };
+const char *credits14[] = { "3SUPPORTO TECNICO", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };                            
+const char *credits15[] = { "1SUPPORTO TECNICO", "PERSONALE SGI N64 PROJECT" };
+const char *credits16[] = { "2GESTIONE DEI PROCESSI", "KIMIYOSHI FUKUI", "KEIZO KATO" };
+const char *credits17[] = { "4VOCE DI MARIO", "VOCE DI PEACH", "CHARLES MARTINET", "LESLIE SWAN" };
+const char *credits18[] = { "4SPECIALI RINGRAZIAMENTI VANNO A", "JYOHO KAIHATUBU", "PERSONALE DI EAD",
+                            "TUTTI I DIPENDENTI NINTENDO", "PERSONALE DI SUPER MARIO CLUB" };
 const char *credits19[] = { "1PRODUTTORE", "SHIGERU MIYAMOTO" };
 const char *credits20[] = { "1PRODUTTORE ESECUTIVO", "HIROSHI YAMAUCHI" };
 #endif
@@ -689,7 +717,7 @@ void initiate_painting_warp(void) {
 
                 play_sound(SOUND_MENU_STAR_SOUND, gGlobalSoundSource);
                 fadeout_music(398);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(80, 70);
                 func_sh_8024C89C(1);
 #endif
@@ -1249,7 +1277,7 @@ s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 unused) {
 }
 
 s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum) {
-#ifdef VERSION_EU
+#if (defined(VERSION_EU) && !defined(VERSION_IT))
     s16 var = eu_get_language();
     switch (var) {
         case LANGUAGE_ENGLISH:
@@ -1265,6 +1293,9 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum) {
                                     _translation_de_mio0SegmentRomEnd);
             break;
     }
+#elif defined(VERSION_IT)
+    load_segment_decompress(0x19, _translation_it_mio0SegmentRomStart,
+                                    _translation_it_mio0SegmentRomEnd);
 #endif
     sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;

@@ -4,6 +4,7 @@
 #include "macros.h"
 #include "surface_terrains.h"
 #include "types.h"
+#include "config.h"
 
 #ifdef VERSION_EU
 #include "text_strings.h"
@@ -1839,7 +1840,7 @@ const Collision main_menu_seg7_collision[] = {
     COL_END(),
 };
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
 
 // Duplicate course name tables; the main menu needs all languages loaded at
 // once since it switches language, so the copies in segment 19 aren't good
@@ -1856,5 +1857,10 @@ const Collision main_menu_seg7_collision[] = {
 #define COURSE_TABLE eu_course_strings_de_table
 #include "text/de/define_courses.inc.c"
 #undef COURSE_TABLE
+#endif
 
+#ifdef VERSION_IT
+#define COURSE_TABLE it_course_strings_table
+#include "text/it/define_courses.inc.c"
+#undef COURSE_TABLE
 #endif

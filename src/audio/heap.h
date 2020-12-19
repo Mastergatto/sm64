@@ -4,6 +4,7 @@
 #include <PR/ultratypes.h>
 
 #include "internal.h"
+#include "config.h"
 
 #define SOUND_LOAD_STATUS_NOT_LOADED     0
 #define SOUND_LOAD_STATUS_IN_PROGRESS    1

@@ -14,6 +14,11 @@ extern u8 dl_menu_ia8_text_end[];
 extern u8 dl_menu_rgba16_wood_course[];
 #ifdef VERSION_EU
 extern u8 dl_menu_rgba16_wood_course_end[];
+#ifdef VERSION_IT
+//TODO
+extern u8 dl_menu_texture_course_upper[];
+extern const u8 it_course_strings_table[];
+#else
 extern u8 dl_menu_texture_course_upper[];
 extern u8 dl_menu_texture_niveau_upper[];
 extern u8 dl_menu_texture_kurs_upper[];
@@ -21,6 +26,7 @@ extern u8 dl_menu_texture_kurs_upper[];
 extern const u8 eu_course_strings_en_table[];
 extern const u8 eu_course_strings_fr_table[];
 extern const u8 eu_course_strings_de_table[];
+#endif
 #endif
 
 // from intro_segment7

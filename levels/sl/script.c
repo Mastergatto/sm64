@@ -24,7 +24,11 @@ static const LevelScript script_func_local_1[] = {
 };
 
 static const LevelScript script_func_local_2[] = {
+#if RESURRECT_CRACKED_ICE
+    OBJECT(/*model*/ MODEL_SL_CRACKED_ICE, /*pos*/ 4377, 1843, 4361, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ bhvUnusedPoundablePlatform),
+#else
     OBJECT(/*model*/ MODEL_NONE, /*pos*/  977, 1024, 2075, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ bhvSnowMoundSpawn),
+#endif
     RETURN(),
 };
 

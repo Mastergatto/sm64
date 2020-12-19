@@ -37,6 +37,14 @@ OUTPUT_ARCH (mips)
    } \
    END_SEG(name##_mio0)
 
+#define MIO0_IT_SEG(name, segAddr) \
+   BEGIN_SEG(name##_mio0, segAddr) \
+   { \
+      BUILD_DIR/bin/it/name.mio0.o(.data); \
+      . = ALIGN(0x10); \
+   } \
+   END_SEG(name##_mio0)
+
 #define STANDARD_LEVEL(name) \
    BEGIN_SEG(name##_segment_7, 0x07000000) \
    { \
@@ -94,7 +102,7 @@ SECTIONS
       BUILD_DIR/src/game/main.o(.text);
       BUILD_DIR/src/game/game_init.o(.text);
       BUILD_DIR/src/game/sound_init.o(.text);
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/src/game/rumble_init.o(.text);
 #endif
       BUILD_DIR/src/game/level_update.o(.text);
@@ -194,7 +202,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osContStartReadData.o(.text);
       BUILD_DIR/libultra.a:osContInit.o(.text);
       BUILD_DIR/libultra.a:osEepromProbe.o(.text);
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/libultra.a:motor.o(.text);
 #endif
       BUILD_DIR/libultra.a:osInvalDCache.o(.text);
@@ -268,7 +276,7 @@ SECTIONS
       BUILD_DIR/libultra.a:__osSiRawStartDma.o(.text)
       BUILD_DIR/libultra.a:osSetTimer.o(.text)
       BUILD_DIR/libultra.a:osEepromWrite.o(.text)
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/libultra.a:osPfsIsPlug.o(.text)
       BUILD_DIR/libultra.a:crc.o(.text)
       BUILD_DIR/libultra.a:contramwrite.o(.text)
@@ -300,7 +308,7 @@ SECTIONS
       BUILD_DIR/libultra.a:__osSetGlobalIntMask.o(.text)
 #endif
       BUILD_DIR/libultra.a:func_802F71F0.o(.text)
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/libultra.a:unk_shindou_file_3.o(.text)
 #endif
       BUILD_DIR/lib/rsp.o(.text);
@@ -421,7 +429,7 @@ SECTIONS
       BUILD_DIR/src/game/main.o(.data*);
       BUILD_DIR/src/game/game_init.o(.data*);
       BUILD_DIR/src/game/sound_init.o(.data*);
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/src/game/rumble_init.o(.data*);
 #endif
       BUILD_DIR/src/game/level_update.o(.data*);
@@ -492,7 +500,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osViTable.o(.data*);
       BUILD_DIR/libultra.a:osCreatePiManager.o(.data*);
       BUILD_DIR/libultra.a:osContInit.o(.data*);
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/libultra.a:motor.o(.data*);
 #endif
       BUILD_DIR/libultra.a:osAiSetNextBuffer.o(.data*);
@@ -631,7 +639,7 @@ SECTIONS
       BUILD_DIR/src/game/main.o(.bss*);
       BUILD_DIR/src/game/game_init.o(.bss*);
       BUILD_DIR/src/game/sound_init.o(.bss*);
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/src/game/rumble_init.o(.bss*);
 #endif
       BUILD_DIR/src/game/level_update.o(.bss*);
@@ -689,7 +697,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osCreatePiManager.o(.bss*);
       BUILD_DIR/libultra.a:osContStartReadData.o(.bss*);
       BUILD_DIR/libultra.a:osContInit.o(.bss*);
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/libultra.a:motor.o(.bss*);
 #endif
       BUILD_DIR/libultra.a:guRotateF.o(.bss*);
@@ -705,7 +713,7 @@ SECTIONS
 #endif
       BUILD_DIR/libultra.a:__osPiCreateAccessQueue.o(.bss*);
       BUILD_DIR/libultra.a:__osSiCreateAccessQueue.o(.bss*);
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
       BUILD_DIR/libultra.a:osPfsIsPlug.o(.bss*);
 #endif
       BUILD_DIR/libultra.a:osEepromWrite.o(.bss*);
@@ -825,10 +833,14 @@ SECTIONS
 
    /* load MIO0 and level data */
    MIO0_SEG(segment2, 0x02000000)
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
    MIO0_EU_SEG(translation_en, 0x19000000)
    MIO0_EU_SEG(translation_fr, 0x19000000)
    MIO0_EU_SEG(translation_de, 0x19000000)
+#endif
+
+#ifdef VERSION_IT
+   MIO0_IT_SEG(translation_it, 0x19000000)
 #endif
 
    /* mario actor group */
@@ -1096,3 +1108,4 @@ SECTIONS
 }
 EXTERN(osPfsIsPlug)
 EXTERN(__osLeoInterrupt)
+

@@ -9,15 +9,16 @@ It builds the following ROMs:
 * sm64.us.z64 `sha1: 9bef1128717f958171a4afac3ed78ee2bb4e86ce`
 * sm64.eu.z64 `sha1: 4ac5721683d0e0b6bbb561b58a71740845dceea9`
 * sm64.sh.z64 `sha1: 3f319ae697533a255a1003d09202379d78d5a2e0`
+* sm64.it.z64
 
 This repo does not include all assets necessary for compiling the ROMs.
 A prior copy of the game is required to extract the assets.
 
 ## Quick Start (for Ubuntu)
 
-1. Install prerequisites: `sudo apt install -y build-essential git binutils-mips-linux-gnu python3`
+1. Install prerequisites: `sudo apt install -y build-essential git binutils-mips-linux-gnu python3 libcapstone-dev`
 2. Clone the repo from within Linux: `git clone https://github.com/n64decomp/sm64.git`
-3. Place a Super Mario 64 ROM called `baserom.<VERSION>.z64` into the project folder for asset extraction, where `VERSION` can be `us`, `jp`, or `eu`.
+3. Place a Super Mario 64 ROM called `baserom.<VERSION>.z64` into the project folder for asset extraction, where `VERSION` can be `us`, `jp`, `eu`, `sh` or `it`.
 4. Run `make` to build. Qualify the version through `make VERSION=<VERSION>`. Add `-j4` to improve build speed (hardware dependent).
 
 Ensure the repo path length does not exceed 255 characters. Long path names result in build errors.
@@ -47,6 +48,10 @@ The build system has the following package requirements:
  * capstone
  * pkgconf
  * python3 >= 3.6
+
+The diff system also requires:
+* python3-pip
+* pip packages: colorama ansiwrap watchdog python-Levenshtein cxxfilt
 
 Dependency installation instructions for common Linux distros are provided below:
 
@@ -79,7 +84,7 @@ You may also use [Docker](#docker-installation) to handle installing an image wi
 
 #### Step 2: Copy baserom(s) for asset extraction
 
-For each version (jp/us/eu) for which you want to build a ROM, put an existing ROM at
+For each version (jp/us/eu/sh) for which you want to build a ROM, put an existing ROM at
 `./baserom.<VERSION>.z64` for asset extraction.
 
 ##### Step 3: Build the ROM
@@ -95,7 +100,7 @@ Resulting artifacts can be found in the `build` directory.
 
 The full list of configurable variables are listed below, with the default being the first listed:
 
-* ``VERSION``: ``us``, ``jp``, ``eu``, ``sh`` (WIP)
+* ``VERSION``: ``us``, ``jp``, ``eu``, ``sh``,``it``
 * ``GRUCODE``: ``f3d_old``, ``f3d_new``, ``f3dex``, ``f3dex2``, ``f3dzex``
 * ``COMPARE``: ``1`` (compare ROM hash), ``0`` (do not compare ROM hash)
 * ``NON_MATCHING``: Use functionally equivalent C implementations for non-matchings (Currently there aren't any non-matchings, but this will apply to Shindou and iQue). Also will avoid instances of undefined behavior.
@@ -191,3 +196,20 @@ discuss what you would like to change.
 Run `clang-format` on your code to ensure it meets the project's coding standards.
 
 Official Discord: [discord.gg/DuYH3Fh](https://discord.gg/DuYH3Fh)
+
+
+## Using first-diff
+It should be possible to get a matching ROM (at least against shu) when removing `VERSION_SH_ULTIMATE` from all bug fixes in `config.h`. To find out why non match is occuring, you can run a `first-diff`.
+An example of using first-diff would be:
+`python3 first-diff.py --it`
+
+## Using diff
+After running `first-diff` you can track down the issue using `diff`.
+an example of this would be (with the -m -w -i flags causing it to automatically rebuild and rediff when you modify a source file):
+
+### Base Rom
+an example using a regular -u (US) version would be `python3 diff.py -umwi rspF3DStart`
+
+### Ultimate Rom
+an example with an italian version would be:
+`python3 diff.py --it -mwi rspF3DStart`

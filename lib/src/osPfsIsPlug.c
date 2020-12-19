@@ -1,8 +1,9 @@
 #include "PR/os_pi.h"
 #include "controller.h"
 //#include "siint.h"
+#include "config.h"
 
-#ifdef VERSION_SH
+#if defined(VERSION_SH) || defined(VERSION_IT)
 OSPifRam __osPfsPifRam;
 
 s32 osPfsIsPlug(OSMesgQueue *queue, u8 *pattern) {

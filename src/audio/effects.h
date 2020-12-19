@@ -5,6 +5,7 @@
 
 #include "internal.h"
 #include "platform_info.h"
+#include "config.h"
 
 #define ADSR_STATE_DISABLED 0
 #define ADSR_STATE_INITIAL 1

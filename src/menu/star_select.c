@@ -204,7 +204,7 @@ void bhv_act_selector_loop(void) {
 /**
  * Print the course number selected with the wood rgba16 course texture.
  */
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
 void print_course_number(s16 language) {
 #else
 void print_course_number(void) {
@@ -217,6 +217,9 @@ void print_course_number(void) {
     gSPDisplayList(gDisplayListHead++, dl_menu_rgba16_wood_course);
 
 #ifdef VERSION_EU
+#ifdef VERSION_IT
+    gSPDisplayList(gDisplayListHead++, dl_menu_texture_course_upper);
+#else
     // Change upper part of the wood texture depending of the language defined
     switch (language) {
         case LANGUAGE_ENGLISH:
@@ -229,7 +232,7 @@ void print_course_number(void) {
             gSPDisplayList(gDisplayListHead++, dl_menu_texture_kurs_upper);
             break;
     }
-
+#endif
     gSPDisplayList(gDisplayListHead++, dl_menu_rgba16_wood_course_end);
 #endif
 
@@ -259,7 +262,11 @@ void print_course_number(void) {
  */
 void print_act_selector_strings(void) {
 #ifdef VERSION_EU
+#ifdef VERSION_IT
+    unsigned char myScore[][10] = { {TEXT_MYSCORE} };
+#else
     unsigned char myScore[][10] = { {TEXT_MYSCORE}, {TEXT_MY_SCORE_FR}, {TEXT_MY_SCORE_DE} };
+#endif
 #else
     unsigned char myScore[] = { TEXT_MYSCORE };
 #endif
@@ -280,13 +287,17 @@ void print_act_selector_strings(void) {
     s16 actNameX;
 #endif
     s8 i;
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     s16 language = eu_get_language();
 #endif
 
     create_dl_ortho_matrix();
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU)
+#ifdef VERSION_IT
+    actNameTbl = segmented_to_virtual(act_name_table_it);
+    levelNameTbl = segmented_to_virtual(course_name_table_it);
+#else
     switch (language) {
         case LANGUAGE_ENGLISH:
             actNameTbl = segmented_to_virtual(act_name_table_eu_en);
@@ -301,6 +312,7 @@ void print_act_selector_strings(void) {
             levelNameTbl = segmented_to_virtual(course_name_table_eu_de);
             break;
     }
+#endif
     currLevelName = segmented_to_virtual(levelNameTbl[gCurrCourseNum - 1]);
 #endif
 
@@ -314,8 +326,12 @@ void print_act_selector_strings(void) {
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     // Print the "MY SCORE" text if the coin score is more than 0
     if (save_file_get_course_coin_score(gCurrSaveFileNum - 1, gCurrCourseNum - 1) != 0) {
-#ifdef VERSION_EU
+#if defined(VERSION_EU)
+#if defined(VERSION_IT)
+        print_generic_string(95, 118, myScore[0]);
+#else
         print_generic_string(95, 118, myScore[language]);
+#endif
 #else
         print_generic_string(102, 118, myScore);
 #endif
@@ -330,7 +346,7 @@ void print_act_selector_strings(void) {
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     print_course_number(language);
 #else
     print_course_number();
@@ -421,7 +437,7 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
 #else
             play_sound(SOUND_MENU_STAR_SOUND_LETS_A_GO, gGlobalSoundSource);
 #endif
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
             queue_rumble_data(60, 70);
             func_sh_8024C89C(1);
 #endif

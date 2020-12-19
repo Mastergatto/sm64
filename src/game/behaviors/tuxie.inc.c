@@ -1,5 +1,8 @@
 // tuxie.c.inc
 
+#include "sm64.h"
+
+
 void play_penguin_walking_sound(s32 walk) {
     s32 sound;
     if (o->oSoundStateID == 0) {
@@ -66,6 +69,9 @@ void tuxies_mother_act_1(void) {
             break;
         case 1:
             if (o->prevObj->oHeldState == HELD_FREE) {
+#if BUGFIX_TUXIE_HELD_STATE
+                o->prevObj->oInteractionSubtype &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
+#else
                 //! This line is was almost certainly supposed to be something
                 // like o->prevObj->oInteractionSubtype &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
                 // however, this code uses the value of o->oInteractionSubtype
@@ -75,6 +81,7 @@ void tuxies_mother_act_1(void) {
                 // which has no effect as o->prevObj->oUnknownUnk88 is always 0
                 // or 1, which is not affected by the bitwise AND.
                 o->prevObj->OBJECT_FIELD_S32(o->oInteractionSubtype) &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
+#endif
                 obj_set_behavior(o->prevObj, bhvUnused20E0);
 #ifndef VERSION_JP
                 cur_obj_spawn_star_at_y_offset(3167.0f, -4300.0f, 5108.0f, 200.0f);
@@ -86,8 +93,12 @@ void tuxies_mother_act_1(void) {
             break;
         case 2:
             if (o->prevObj->oHeldState == HELD_FREE) {
+#if BUGFIX_TUXIE_HELD_STATE
+                o->prevObj->oInteractionSubtype &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
+#else
                 //! Same bug as above
                 o->prevObj->OBJECT_FIELD_S32(o->oInteractionSubtype) &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
+#endif
                 obj_set_behavior(o->prevObj, bhvPenguinBaby);
                 o->oAction = 2;
             }

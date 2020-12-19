@@ -41,6 +41,13 @@ versionGroup.add_argument(
     const="sh",
     dest="version",
 )
+versionGroup.add_argument(
+    "--it",
+    help="use Italian version with rumble",
+    action="store_const",
+    const="it",
+    dest="version",
+)
 parser.add_argument(
     "-m", "--make", help="run make before finding difference(s)", action="store_true"
 )
@@ -65,7 +72,7 @@ version = args.version
 if version is None:
     version = "us"
     best = 0
-    for ver in ["us", "jp", "eu", "sh"]:
+    for ver in ["us", "jp", "eu", "sh", "it"]:
         try:
             mtime = os.path.getmtime(f"build/{ver}/sm64.{ver}.z64")
             if mtime > best:
@@ -78,11 +85,16 @@ if version is None:
 if args.make:
     check_call(["make", "-j4", "VERSION=" + version, "COMPARE=0"])
 
-baseimg = f"baserom.{version}.z64"
-basemap = f"sm64.{version}.map"
+if len(version) == 2:
+    baseimg = f"baserom.{version}.z64"
+    basemap = f"sm64.{version}.map"
+    mymap = f"build/{version}/{basemap}"
+else:
+    baseimg = f"baserom.{version[:-1]}.z64"
+    basemap = f"sm64.{version[:-1]}.map"
+    mymap = f"build/{version}/sm64.{version}.map"
 
 myimg = f"build/{version}/sm64.{version}.z64"
-mymap = f"build/{version}/{basemap}"
 
 if os.path.isfile("expected/" + mymap):
     basemap = "expected/" + mymap

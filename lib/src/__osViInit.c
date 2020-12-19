@@ -1,5 +1,6 @@
 #include "libultra_internal.h"
 #include "hardware.h"
+#include "config.h"
 
 #ifdef VERSION_SH
 extern s32 D_SH_80000300; // Potentially a TV type

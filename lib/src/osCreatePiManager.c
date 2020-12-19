@@ -1,4 +1,5 @@
 #include "libultra_internal.h"
+#include "config.h"
 
 #define OS_PI_MGR_MESG_BUFF_SIZE 1
 

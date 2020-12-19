@@ -392,8 +392,10 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
             case DIALOG_CHAR_LOWER_A_UMLAUT:
                 render_lowercase_diacritic(&xCoord, &yCoord, ASCII_TO_DIALOG('a'), str[strPos] & 0xF);
                 break;
+#ifdef VERSION_IT
             case DIALOG_CHAR_UPPER_A_GRAVE:
-            case DIALOG_CHAR_UPPER_A_UMLAUT: // @bug circumflex (0x64-0x65) are absent here
+#endif
+            case DIALOG_CHAR_UPPER_A_UMLAUT: // @bug grave and circumflex (0x64-0x65) are absent here
                 render_uppercase_diacritic(&xCoord, &yCoord, ASCII_TO_DIALOG('A'), str[strPos] & 0xF);
                 break;
             case DIALOG_CHAR_LOWER_E_GRAVE:
@@ -413,12 +415,16 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
             case DIALOG_CHAR_LOWER_U_UMLAUT:
                 render_lowercase_diacritic(&xCoord, &yCoord, ASCII_TO_DIALOG('u'), str[strPos] & 0xF);
                 break;
+#ifdef VERSION_IT
             case DIALOG_CHAR_UPPER_U_GRAVE:
+#endif
             case DIALOG_CHAR_UPPER_U_UMLAUT: // @bug grave and circumflex (0x84-0x85) are absent here
                 render_uppercase_diacritic(&xCoord, &yCoord, ASCII_TO_DIALOG('U'), str[strPos] & 0xF);
                 break;
             case DIALOG_CHAR_LOWER_O_CIRCUMFLEX:
+#ifdef VERSION_IT
             case DIALOG_CHAR_LOWER_O_GRAVE:
+#endif
             case DIALOG_CHAR_LOWER_O_UMLAUT:
                 render_lowercase_diacritic(&xCoord, &yCoord, ASCII_TO_DIALOG('o'), str[strPos] & 0xF);
                 break;
@@ -1300,7 +1306,9 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
                 render_dialog_uppercase_diacritic(dialog, ASCII_TO_DIALOG('U'), strChar & 0xF);
                 break;
             case DIALOG_CHAR_LOWER_O_CIRCUMFLEX:
+#ifdef VERSION_IT
             case DIALOG_CHAR_LOWER_O_GRAVE:
+#endif
             case DIALOG_CHAR_LOWER_O_UMLAUT:
                 render_dialog_lowercase_diacritic(dialog, ASCII_TO_DIALOG('o'), strChar & 0xF);
                 break;
@@ -1685,7 +1693,7 @@ void render_dialog_entries(void) {
 #if defined(VERSION_US) || defined(VERSION_SH)
     s8 lowerBound;
 #endif
-#ifdef VERSION_EU
+#if defined(VERSION_EU) &&  !defined(VERSION_IT)
     gInGameLanguage = eu_get_language();
     switch (gInGameLanguage) {
         case LANGUAGE_ENGLISH:
@@ -1698,6 +1706,8 @@ void render_dialog_entries(void) {
             dialogTable = segmented_to_virtual(dialog_table_eu_de);
             break;
     }
+#elif defined(VERSION_IT)
+    dialogTable = segmented_to_virtual(dialog_table_it);
 #else
     dialogTable = segmented_to_virtual(seg2_dialog_table);
 #endif
@@ -2007,7 +2017,7 @@ void print_peach_letter_message(void) {
     void **dialogTable;
     struct DialogEntry *dialog;
     u8 *str;
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     gInGameLanguage = eu_get_language();
     switch (gInGameLanguage) {
         case LANGUAGE_ENGLISH:
@@ -2020,6 +2030,8 @@ void print_peach_letter_message(void) {
             dialogTable = segmented_to_virtual(dialog_table_eu_de);
             break;
     }
+#elif defined(VERSION_IT)
+    dialogTable = segmented_to_virtual(dialog_table_it);
 #else
     dialogTable = segmented_to_virtual(seg2_dialog_table);
 #endif
@@ -2223,7 +2235,7 @@ void render_pause_my_score_coins(void) {
     courseIndex = gCurrCourseNum - 1;
     starFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     switch (gInGameLanguage) {
         case LANGUAGE_ENGLISH:
             actNameTbl = segmented_to_virtual(act_name_table_eu_en);
@@ -2239,6 +2251,11 @@ void render_pause_my_score_coins(void) {
             break;
     }
 #endif
+#ifdef VERSION_IT
+    actNameTbl = segmented_to_virtual(act_name_table_it);
+    courseNameTbl = segmented_to_virtual(course_name_table_it);
+#endif
+
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
@@ -2523,7 +2540,7 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
     u8 strVal[8];
     s16 starNum = gDialogLineNum;
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     switch (gInGameLanguage) {
         case LANGUAGE_ENGLISH:
             courseNameTbl = segmented_to_virtual(course_name_table_eu_en);
@@ -2535,6 +2552,9 @@ void render_pause_castle_main_strings(s16 x, s16 y) {
             courseNameTbl = segmented_to_virtual(course_name_table_eu_de);
             break;
     }
+#endif
+#ifdef VERSION_IT
+    courseNameTbl = segmented_to_virtual(course_name_table_it);
 #endif
 
     handle_menu_scrolling(MENU_SCROLL_VERTICAL, &gDialogLineNum, -1, COURSE_STAGES_COUNT + 1);
@@ -2833,7 +2853,7 @@ void render_course_complete_lvl_info_and_hud_str(void) {
 
     u8 strCourseNum[4];
 
-#ifdef VERSION_EU
+#if defined(VERSION_EU) && !defined(VERSION_IT)
     s16 centerX;
     switch (gInGameLanguage) {
         case LANGUAGE_ENGLISH:
@@ -2849,6 +2869,10 @@ void render_course_complete_lvl_info_and_hud_str(void) {
             courseNameTbl = segmented_to_virtual(course_name_table_eu_de);
             break;
     }
+#elif defined(VERSION_IT)
+    s16 centerX;
+    actNameTbl = segmented_to_virtual(act_name_table_it);
+    courseNameTbl = segmented_to_virtual(course_name_table_it);
 #else
     actNameTbl = segmented_to_virtual(seg2_act_name_table);
     courseNameTbl = segmented_to_virtual(seg2_course_name_table);

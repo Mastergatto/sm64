@@ -187,6 +187,9 @@ f32 get_water_level_below_shadow(struct Shadow *s) {
     }
     //! @bug Missing return statement. This compiles to return `waterLevel`
     //! incidentally.
+#if BUGFIX_SHADOW_WATERLEVEL
+    return waterLevel;
+#endif
 }
 
 /**
@@ -211,6 +214,11 @@ s8 init_shadow(struct Shadow *s, f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, 
     if (gEnvironmentRegions != 0) {
         waterLevel = get_water_level_below_shadow(s);
     }
+#if BUGFIX_SHADOW_WATERLEVEL
+    else {
+        waterLevel = 0;
+    }
+#endif
     if (gShadowAboveWaterOrLava) {
         //! @bug Use of potentially undefined variable `waterLevel`
         s->floorHeight = waterLevel;

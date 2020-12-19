@@ -1,5 +1,7 @@
 // star_door.c.inc
 
+#include "config.h"
+
 void star_door_update_pos(void) {
     o->oVelX = (o->oUnkBC) * coss(o->oMoveAngleYaw);
     o->oVelZ = (o->oUnkBC) * -sins(o->oMoveAngleYaw);
@@ -22,7 +24,7 @@ void bhv_star_door_loop(void) {
         case 1:
             if (o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0) {
                 cur_obj_play_sound_2(SOUND_GENERAL_STAR_DOOR_OPEN);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(35, 30);
 #endif
             }
@@ -39,7 +41,7 @@ void bhv_star_door_loop(void) {
         case 3:
             if (o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0) {
                 cur_obj_play_sound_2(SOUND_GENERAL_STAR_DOOR_CLOSE);
-#ifdef VERSION_SH
+#if FEATURE_RUMBLE_PAK_SUPPORT
                 queue_rumble_data(35, 30);
 #endif
             }

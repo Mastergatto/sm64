@@ -6,6 +6,7 @@
 #include "synthesis.h"
 #include "seqplayer.h"
 #include "effects.h"
+#include "config.h"
 
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 

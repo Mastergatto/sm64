@@ -1,4 +1,5 @@
 #include "libultra_internal.h"
+#include "config.h"
 
 OSViMode osViModeTable[] = {
     /*osViModeNtscLpn1*/
