@@ -197,16 +197,16 @@ Vuoi salvare il gioco?\n\
 
 DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
 Hai raccolto 100\n\
-monete! Mario ottiene più\n\
-potere dal castello.\n\
+monete! Questa stella\n\
+dona più forza a Mario.\n\
 Vuoi salvare il gioco?\n\
-//Sì////No"))
+//Sì/////No"))
 
 DEFINE_DIALOG(DIALOG_014, 1, 4, 30, 200, _("\
 Uao! Un'altra Stella\n\
-Magica! Mario trae\n\
-più coraggio dal\n\
-potere del castello.\n\
+Magica! Mario diventa\n\
+più coraggioso grazie\n\
+al potere della stella.\n\
 Vuoi salvare il gioco?\n\
 \n\
 //Certo! //Non ora"))
@@ -226,11 +226,11 @@ di nuovo."))
 DEFINE_DIALOG(DIALOG_016, 1, 3, 30, 200, _("\
 Salta sul guscio fulgido e\n\
 viaggia ovunque, dove vuoi\n\
-tu! Straccia i nemici!"))
+tu! Disintegra i nemici!"))
 
 DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
 Sono il Re Bob-omba,\n\
-signore degli esplosivi,\n\
+signore delle bombe,\n\
 maestro di tutte le\n\
 esplosioni del mondo!\n\
 Come osi scalare la mia\n\
@@ -247,8 +247,8 @@ Con ciò, io ti sfido,\n\
 Mario!\n\
 La Stella è sotto la mia\n\
 custodia. Se tu la vuoi,\n\
-devi farti valere\n\
-in duello.\n\
+allora devi farti\n\
+valere in duello.\n\
 Puoi tu afferrarmi da\n\
 dietro e lanciarmi su\n\
 questo nobile suolo?\n\
@@ -479,8 +479,8 @@ slittinista! La prossima\n\
 volta avrai più fortuna!"))
 
 DEFINE_DIALOG(DIALOG_038, 1, 3, 95, 200, _("\
-Reagendo al potere della\n\
-Stella, la porta\n\
+Reagendo al potere\n\
+della Stella, la porta\n\
 gradualmente si apre."))
 
 DEFINE_DIALOG(DIALOG_039, 1, 5, 30, 200, _("\
@@ -856,7 +856,7 @@ DEFINE_DIALOG(DIALOG_066, 1, 5, 30, 200, _("\
 Mario, sono Peach!\n\
 Stai attento! Bowser è\n\
 così  malvagio! Lui proverà\n\
-a bruciarti con il suo\n\
+ad arrostirti con il suo\n\
 terribile respiro di fuoco.\n\
 Vagli dietro e afferragli\n\
 la coda con il Pulsante [B].\n\
@@ -1044,11 +1044,10 @@ salto alto nel dipinto.\n\
 Ah, a proposito, guarda\n\
 cosa ho trovato!"))
 
-DEFINE_DIALOG(DIALOG_077, 1, 4, 150, 200, _("\
-È severamente VIETATO\n\
-fare uno Schianto a Terra\n\
-sui pilastri. \n\
-Davvero, non farlo."))
+DEFINE_DIALOG(DIALOG_077, 1, 3, 150, 200, _("\
+In caso di emergenza\n\
+eseguire uno Schianto\n\
+a Terra sui pilastri."))
 
 DEFINE_DIALOG(DIALOG_078, 1, 5, 30, 200, _("\
 Rompi il Blocco Monete Blu\n\
@@ -1222,13 +1221,13 @@ premi [Z], poi salta!"))
 
 DEFINE_DIALOG(DIALOG_095, 1, 4, 30, 200, _("\
 Per leggere un cartello,\n\
-stai di fronte ad esso e\n\
-premi [B], come hai appena\n\
-fatto ora.\n\
+stai di fronte ad esso\n\
+e premi [B], come hai\n\
+appena fatto ora.\n\
 Quando vuoi parlare a un\n\
 Koopa Troopa o un'altra\n\
-creatura, stai proprio di\n\
-fronte a loro.\n\
+creatura, stai proprio\n\
+di fronte a loro.\n\
 Per favore, in questo\n\
 mondo, recupera le\n\
 Stelle che sono state\n\
@@ -1363,8 +1362,8 @@ ti seguo subito!"))
 DEFINE_DIALOG(DIALOG_111, 1, 4, 95, 200, _("\
 Perfetto! Che bel corpo\n\
 nuovo! Tieni, è un regalo\n\
-per te. Sono sicuro che ti\n\
-scalderà il cuore."))
+per te. Sono sicuro che\n\
+ti scalderà il cuore."))
 
 DEFINE_DIALOG(DIALOG_112, 1, 4, 30, 200, _("\
 Raccogli tante monete\n\
@@ -1495,8 +1494,8 @@ DEFINE_DIALOG(DIALOG_121, 1, 5, 30, 200, _("\
 Nooo! Non può essere!\n\
 Mi hai veramente battuto,\n\
 Mario?!! Avevo conferito\n\
-potere alle mie truppe, ma\n\
-ora questo sta svanendo!\n\
+il potere alle mie truppe,\n\
+ma ora sta svanendo!\n\
 Arrgghh! Ora vedo la pace\n\
 tornare nel mondo...\n\
 Non lo sopporto proprio!\n\

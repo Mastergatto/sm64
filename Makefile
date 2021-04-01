@@ -58,6 +58,7 @@ else ifeq ($(VERSION),it)
   BASE_VERSION ?= eu
   DEFINES   += VERSION_EU=1
   DEFINES   += VERSION_IT=1
+  DEFINES   += HACK_NTSC_EMULATOR=1
   OPT_FLAGS := -O2
   GRUCODE   ?= f3d_new
   VERSION_JP_US  ?= false

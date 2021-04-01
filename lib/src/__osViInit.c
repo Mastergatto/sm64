@@ -15,9 +15,21 @@ OSViContext *__osViCurr = &sViContexts[0];
 OSViContext *__osViNext = &sViContexts[1];
 #ifdef VERSION_EU
 u32 osViClock = 0x02E6D354; // used for audio frequency calculations
-u32 sTvType = TV_TYPE_PAL;
-#elif !defined(VERSION_SH)
+
+#if ENABLE_TV_NTSC
 u32 sTvType = TV_TYPE_NTSC;
+#else
+u32 sTvType = TV_TYPE_PAL;
+#endif
+
+#elif !defined(VERSION_SH)
+
+#if ENABLE_TV_NTSC
+u32 sTvType = TV_TYPE_NTSC;
+#else
+u32 sTvType = TV_TYPE_PAL;
+#endif
+
 u32 osViClock = 0x02E6D354;
 #endif
 
@@ -39,7 +51,6 @@ void __osViInit(void) {
     __osViCurr->retraceCount = 1;
 
 #if defined(VERSION_EU)
-
     if (osTvType == TV_TYPE_PAL) {
         __osViNext->modep = &D_80334990;
         osViClock = 0x02F5B2D2;

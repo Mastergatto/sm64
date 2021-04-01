@@ -35,7 +35,11 @@
 .elseif (VERSION_JP == 1 || VERSION_SH == 1)
     .ascii "J"                  /* NTSC-J (Japan) */
 .elseif (VERSION_IT == 1)
-    .ascii "I"                  /* PAL (Italy) */
+    .if HACK_NTSC_EMULATOR == 1
+        .ascii "J"                  /* Emulators set 60hz only on J or E */
+    .else
+        .ascii "I"                  /* PAL (Italy) */
+    .endif
 .else
     .ascii "P"                  /* PAL (Europe) */
 .endif
